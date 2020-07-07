@@ -184,49 +184,65 @@ navbarPage("DatAC: Data Against COVID-19", id="nav", theme = shinytheme("lumen")
                       column(8, offset = 2,
                              wellPanel(
                                p("DatAC is a collaborative project
-                               conducted by a multidisciplinary group of researchers."),
-                               h3("Team"),
-                               HTML("<b>Pedro Carmona-Sáez</b> <br>
+                               conducted by a multidisciplinary group of researchers.", style = "font-size:16px;"),
+                               
+                               fluidRow(
+                               column(8,
+                                       h3("Team"),
+                                      HTML("<b>Pedro Carmona-Sáez</b> <br>
                                Project coordinator <br>
                                Department of Statistics, University of Granada and 
                                Bioinformatics Unit, GENYO"),
-                               p("Contact: ", 
-                                 a(href = "mailto:pedro.carmona@genyo.es", "pedro.carmona@genyo.es", .noWS = "outside"), 
-                                 .noWS = c("after-begin", "before-end")),
-                               
-                               HTML("<b>Jordi Martorell-Marugán</b> <br>
+                                      p("Contact: ", 
+                                        a(href = "mailto:pedro.carmona@genyo.es", "pedro.carmona@genyo.es", .noWS = "outside"), 
+                                        .noWS = c("after-begin", "before-end")),
+                                      
+                                      HTML("<b>Jordi Martorell-Marugán</b> <br>
                                Main application developer <br>
                                Bioinformatics Unit, GENYO <br>"),
-                               br(),
-                               
-                               HTML("<b>Juan Antonio Villatoro-García</b> <br>
+                                      br(),
+                                      
+                                      HTML("<b>Juan Antonio Villatoro-García</b> <br>
                                Data collection and analysis <br>
                                Bioinformatics Unit, GENYO <br>"),
-                               br(),
-                               
-                               HTML("<b>Adrián García-Moreno</b> <br>
+                                      br(),
+                                      
+                                      HTML("<b>Adrián García-Moreno</b> <br>
                                Application codeveloper <br>
                                Bioinformatics Unit, GENYO <br>"),
-                               br(),
-                               HTML("<b>Raúl López-Domínguez</b> <br>
+                                      br(),
+                                      HTML("<b>Raúl López-Domínguez</b> <br>
                                Application codeveloper <br>
                                Bioinformatics Unit, GENYO"),
+                                      
+                                      h3("Collaborators"),
+                                      tags$div(
+                                        tags$ul(
+                                          tags$li(tags$b("Francisco Requena"), ", Imagine Institute of Genetic Diseases"),
+                                          tags$li(tags$b("Juan Julián Merelo"), ", Department of Computer Architecture and Technology, University of Granada"),
+                                          tags$li(tags$b("Marina Lacasaña"), ", Andalusian School of Public Health"),
+                                          tags$li(tags$b("Juan de Dios Luna"), ", Department of Statistics, University of Granada"),
+                                          tags$li(tags$b("Juan José Díaz-Mochón"), ", Centre for Genomics and Oncological Research (GENYO)"),
+                                          tags$li(tags$b("José Antonio Lorente"), ", Centre for Genomics and Oncological Research (GENYO)")
+                                        )
+                                      )
+                               ),
+                               column(4, align = "center",
+                                      tags$a(tags$img(src="logoGenyo.png", width = "200px"),
+                                             href="https://www.genyo.es/?lang=en", target="_blank"),
+                                      br(),
+                                      br(),
+                                      tags$a(tags$img(src="logoUGR.png", width = "200px"),
+                                             href="https://www.ugr.es/en/", target="_blank"),
+                                      br(),
+                                      br(),
 
-                               h3("Collaborators"),
-                               tags$div(
-                                 tags$ul(
-                                   tags$li("Francisco Requena, Imagine Institute of Genetic Diseases"),
-                                   tags$li("Juan Julián Merelo, Department of Computer Architecture and Technology, University of Granada"),
-                                   tags$li("Marina Lacasaña, Andalusian School of Public Health"),
-                                   tags$li("Juan de Dios Luna, Department of Statistics, University of Granada"),
-                                   tags$li("Juan José Díaz-Mochón, Centre for Genomics and Oncological Research (GENYO)"),
-                                   tags$li("José Antonio Lorente, Centre for Genomics and Oncological Research (GENYO)")
-                                 )
-                               )
-                             )
+                                      tags$a(tags$img(src="logoEASP2020.png", width = "200px"),
+                                             href="https://www.easp.es/"))
                       )
                     )
-           ),
+                      )
+           )),
                     
            
            tabPanel("About",
