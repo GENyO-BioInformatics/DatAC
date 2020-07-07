@@ -228,12 +228,13 @@ navbarPage("DatAC: Data Against COVID-19", id="nav", theme = shinytheme("lumen")
                                       )
                                ),
                                column(4, align = "center",
-                                      tags$a(tags$img(src="logoGenyo.png", width = "200px"),
-                                             href="https://www.genyo.es/?lang=en", target="_blank"),
-                                      br(),
-                                      br(),
                                       tags$a(tags$img(src="logoUGR.png", width = "200px"),
                                              href="https://www.ugr.es/en/", target="_blank"),
+                                      br(),
+                                      br(),
+                                      
+                                      tags$a(tags$img(src="logoGenyo.png", width = "200px"),
+                                             href="https://www.genyo.es/?lang=en", target="_blank"),
                                       br(),
                                       br(),
 
