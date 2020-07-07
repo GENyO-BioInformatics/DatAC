@@ -1,0 +1,31 @@
+	Name R	Variable	Description	Source
+COVID-19 Metrics	CasesTotal	Cumulative cases (Total)	Cumulative positive cases (PCR + Antibody tests)	Ministry of Health, Consumption and Social Welfare of Spain, https://github.com/datadista/datasets/tree/master/COVID%2019
+	newCasesTotal	Daily cases (Total)	Daily positive cases (PCR + Antibody tests)	Andalusian Institute of Statistics and Cartography
+	PCR	Cumulative cases (PCR+)	Cumulative PCR positive cases	Ministry of Health, Consumption and Social Welfare of Spain, https://github.com/datadista/datasets/tree/master/COVID%2019
+	newPCR	Daily cases (PCR+)	Daily PCR positive cases	Andalusian Institute of Statistics and Cartography
+	Deaths	Cumulative deaths	Cumulative COVID-19 deaths	Ministry of Health, Consumption and Social Welfare of Spain, https://github.com/datadista/datasets/tree/master/COVID%2019
+	newDeaths	Daily deaths	Daily COVID-19 deaths	Andalusian Institute of Statistics and Cartography
+	Cured	Cumulative recovered	Cumulative recovered COVID-19 patiens	Ministry of Health, Consumption and Social Welfare of Spain, https://github.com/datadista/datasets/tree/master/COVID%2019
+	newCured	Daily recovered	Daily recovered COVID-19 patiens	Andalusian Institute of Statistics and Cartography
+	Hospitalized	Cumulative hospitalized	Cumulative hospitalized COVID-19 patiens	Ministry of Health, Consumption and Social Welfare of Spain, https://github.com/datadista/datasets/tree/master/COVID%2019
+	newHospitalized	Daily hospitalized	Daily hospitalized COVID-19 patiens	Andalusian Institute of Statistics and Cartography
+	UCI	Cumulative ICU	Cumulative COVID-19 patiens transferred to ICU	Ministry of Health, Consumption and Social Welfare of Spain, https://github.com/datadista/datasets/tree/master/COVID%2019
+	newUCI	Daily ICU	Daily COVID-19 patiens transferred to ICU	Andalusian Institute of Statistics and Cartography
+Calculations	RateCasesCum	Incidence rate	Cumulative cases rate per 100000 habitants. (Cases/Population) * 100000	NA
+	RateDeathsCum	Deaths rate	Cumulative deaths rate per 100000 habitants. (Deaths/Population) * 100000	NA
+	PercentageCured.CasesTotal	CRR	Case recovered rate. Percentage of recovered COVID-19 patiens by total cases. (Recovered/Cases)*100	NA
+	PercentageDeaths.CasesTotal	CFR	Case fatality rate. Percentage of COVID-19 deaths by total cases. (Deaths/Cases) * 100	NA
+	CI14	CI14	Cumulative Incidence rate per 100000 habitants in 14 days	NA
+	CI7	CI7	Cumulative Incidence rate per 100000 habitants in 7 days	NA
+	PorcentualIncrementCasesTotal	Percentage Increment	Percentage increase in the number of daily positive cases	NA
+Climatology	Temperature	Temperature	Daily average temperature (Cº)	Spanish meteorological agency (AEMET)
+	Precipitation	Rainfall	Daily rainfall measured in liters per square meter (l/(m^2))	Spanish meteorological agency (AEMET)
+	WindSpeed	Wind speed	Average daily wind speed (m/s)	Spanish meteorological agency (AEMET)
+	Insolation	Insolation	Time of solar insolation (hours)	Spanish meteorological agency (AEMET)
+Air quality	CO	CO	CO (ug/m^3)	Andalusian Surveillance and Air Quality Control Network
+	NO2	NO2	NO2 (ug/m^3)	Andalusian Surveillance and Air Quality Control Network
+	O3	O3	O3 (ug/m^3)	Andalusian Surveillance and Air Quality Control Network
+	SO2	SO2	SO2 (ug/m^3)	Andalusian Surveillance and Air Quality Control Network
+	PM10	PM10	Particulate matter 10 micrometers or less in diameter (ug/m^3)	Andalusian Surveillance and Air Quality Control Network
+	PM2.5	PM2.5	Particulate matter 2.5 micrometers or less in diameter (ug/m^3)	Andalusian Surveillance and Air Quality Control Network
+Demographics	Population	Population	Population of the region	Institute of Statistics of Spain (INE), Andalusian Institute of Statistics and Cartography (IECA)
