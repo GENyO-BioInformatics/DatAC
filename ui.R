@@ -184,7 +184,7 @@ navbarPage("DatAC: Data Against COVID-19", id="nav", theme = shinytheme("lumen")
                       column(8, offset = 2,
                              wellPanel(
                                p("DatAC is a collaborative project
-                               conducted by a multidiscplanary group of researchers."),
+                               conducted by a multidisciplinary group of researchers."),
                                h3("Team"),
                                HTML("<b>Pedro Carmona-Sáez</b> <br>
                                Project coordinator <br>
