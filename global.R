@@ -836,7 +836,6 @@ lmp <- function (modelobject) {
                     hovertemplate = paste('<b>%{yaxis.title.text}</b>: %{y}',
                                           '<br><b>%{xaxis.title.text}</b>: %{x}',
                                           '<extra></extra>')) %>% 
-        add_lines(x = ~N, y = fitted(fit), showlegend = F, hoverinfo="none") %>%
         layout(title = paste(rownames(data1), main, sep = "<br />"),
                margin=list(t = 75),
                xaxis = list(title = xlab),
@@ -861,6 +860,10 @@ lmp <- function (modelobject) {
                  width = 550,
                  height = 350
                ))
+      if (model != "Correlation"){
+        plot <- plot %>% add_lines(x = ~N, y = fitted(fit), showlegend = F, hoverinfo="none")
+
+      }
       
       return(list(plot, modelResults))
     }

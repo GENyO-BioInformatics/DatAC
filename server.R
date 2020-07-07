@@ -721,8 +721,7 @@ shinyServer(function(input, output, session) {
                 varOut <- paste0(input$variable1Single, isolate(input$variable1SingleAverage))
             }
         }
-        print(varOut)
-        
+
         return(varOut)
     })
     

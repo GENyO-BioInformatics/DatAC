@@ -178,6 +178,55 @@ navbarPage("DatAC: Data Against COVID-19", id="nav", theme = shinytheme("lumen")
                       )
                     )
            ),
+           
+           tabPanel("DatAC Team",
+                    fluidRow(
+                      column(8, offset = 2,
+                             wellPanel(
+                               p("DatAC is a collaborative project
+                               conducted by a multidiscplanary group of researchers."),
+                               h3("Team"),
+                               HTML("<b>Pedro Carmona-Sáez</b> <br>
+                               Project coordinator <br>
+                               Department of Statistics, University of Granada and 
+                               Bioinformatics Unit, GENYO"),
+                               p("Contact: ", 
+                                 a(href = "mailto:pedro.carmona@genyo.es", "pedro.carmona@genyo.es", .noWS = "outside"), 
+                                 .noWS = c("after-begin", "before-end")),
+                               
+                               HTML("<b>Jordi Martorell-Marugán</b> <br>
+                               Main application developer <br>
+                               Bioinformatics Unit, GENYO <br>"),
+                               br(),
+                               
+                               HTML("<b>Juan Antonio Villatoro-García</b> <br>
+                               Data collection and analysis <br>
+                               Bioinformatics Unit, GENYO <br>"),
+                               br(),
+                               
+                               HTML("<b>Adrián García-Moreno</b> <br>
+                               Application codeveloper <br>
+                               Bioinformatics Unit, GENYO <br>"),
+                               br(),
+                               HTML("<b>Raúl López-Domínguez</b> <br>
+                               Application codeveloper <br>
+                               Bioinformatics Unit, GENYO"),
+
+                               h3("Collaborators"),
+                               tags$div(
+                                 tags$ul(
+                                   tags$li("Francisco Requena, Imagine Institute of Genetic Diseases"),
+                                   tags$li("Juan Julián Merelo, Department of Computer Architecture and Technology, University of Granada"),
+                                   tags$li("Marina Lacasaña, Andalusian School of Public Health"),
+                                   tags$li("Juan de Dios Luna, Department of Statistics, University of Granada"),
+                                   tags$li("Juan José Díaz-Mochón, Centre for Genomics and Oncological Research (GENYO)"),
+                                   tags$li("José Antonio Lorente, Centre for Genomics and Oncological Research (GENYO)")
+                                 )
+                               )
+                             )
+                      )
+                    )
+           ),
                     
            
            tabPanel("About",

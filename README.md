@@ -1,2 +1,2 @@
-# DatAC2
- DatAC: Data Against COVID
+# DatAC
+ DatAC: Data Against COVID-19
