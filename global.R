@@ -830,6 +830,7 @@ lmp <- function (modelobject) {
       else {
         modelResults <- pcor.test(dataPlot$N, dataPlot$Value, c(dataAlarm), method = corMethod)
       }
+      fit <- TRUE # To generate the plot anyway
     }
     
     else if (model == "Loess"){
