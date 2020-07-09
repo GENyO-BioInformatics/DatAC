@@ -7,13 +7,13 @@ navbarPage("DatAC: Data Against COVID-19", id="nav", theme = shinytheme("lumen")
            tabPanel("Map",
                     tags$head(tags$link(rel = "icon", type = "image/png", href = "SARS-CoV-2.png")),
                     tags$script(HTML("var header = $('.navbar > .container-fluid');
-                    header.append('<div style=\"float:right\"><a href=\"https://www.genyo.es/?lang=en\"; target=\"_blank\"><img src=\"logoGenyo.png\" alt=\"Genyo\" style=\"float:right;height:50px;padding-top:1px;\"> </a></div>');
+                    header.append('<div style=\"float:right\"><a href=\"https://www.easp.es\"; target=\"_blank\"><img src=\"logoEASP2020.jpg\" alt=\"EASP\" style=\"float:right;height:50px;padding-top:1px;\"> </a></div>');
                         console.log(header);
                     header.append('<div style=\"float:right\"><a href=\"https://www.ugr.es/en/\"; target=\"_blank\"><img src=\"logoUGR.png\" alt=\"UGR\" style=\"float:right;height:50px;padding-top:1px; margin: 0 15px;\"> </a></div>');
                                      header.append('<div style=\"float:right\"><a href=\"http://bioinfo.genyo.es\"; target=\"_blank\"><img src=\"logoBioinfo.png\" alt=\"Bioinformatics Unit\" style=\"float:right;height:50px;padding-top:1px;\"> </a></div>');"
                     )
                     ),
-                    
+           
                     fluidRow(style = "margin-top:-1.4em", 
                              column(2,
                                     div(style="text-align:center; font-size:20px;", tags$strong("Map data explorer")),
@@ -74,7 +74,8 @@ navbarPage("DatAC: Data Against COVID-19", id="nav", theme = shinytheme("lumen")
                                      selectInput("corMethodSingleAnalysis", "Method",
                                                  list("Pearson" = "pearson", 
                                                       "Spearman" = "spearman", 
-                                                      "Kendall" = "kendall"))
+                                                      "Kendall" = "kendall")),
+                                     checkboxInput("correctCor", "Correct for lockdown days")
                                    ),
                                    sliderInput("lagSingleRegion", "Lag between variables (days)", 
                                                min = -30,
@@ -95,11 +96,12 @@ navbarPage("DatAC: Data Against COVID-19", id="nav", theme = shinytheme("lumen")
                                    uiOutput("varStationsSingle2"),
                                    
                                    h3("Dates"),
-                                   sliderInput("singleAnalysisDates", NULL, 
-                                               min = as.Date(min(firstUpdates, na.rm=T)),
-                                               max = as.Date(max(lastUpdates, na.rm=T)),
-                                               value = c(as.Date(min(firstUpdates, na.rm=T)),
-                                                         as.Date(max(lastUpdates, na.rm=T)))),
+                                   dateInput("singleAnalysisDateInitial", "Initial Date", value = as.Date(min(firstUpdates, na.rm=T)),
+                                             min = as.Date(min(firstUpdates, na.rm=T)), max = as.Date(max(lastUpdates, na.rm=T))),
+                                   
+                                   dateInput("singleAnalysisDateFinal", "Final Date", value = as.Date(max(lastUpdates, na.rm=T)),
+                                             min = as.Date(min(firstUpdates, na.rm=T)), max = as.Date(max(lastUpdates, na.rm=T))),
+                                   
                                    h3("Region"),
                                    selectInput("regionTypeSingleAnalysis", NULL, c("Communities", "Provinces")),
                                    uiOutput("regionsSingleAnalysis")
@@ -135,11 +137,17 @@ navbarPage("DatAC: Data Against COVID-19", id="nav", theme = shinytheme("lumen")
                                                max = 30,
                                                value = 0),
                                    h3("Dates"),
-                                   sliderInput("CorAdvancedDates", NULL, 
-                                               min = as.Date(min(firstUpdates, na.rm=T)),
-                                               max = as.Date(max(lastUpdates, na.rm=T)),
-                                               value = c(as.Date(min(firstUpdates, na.rm=T)),
-                                                         as.Date(max(lastUpdates, na.rm=T)))),
+                                   dateInput("CorAdvancedDateInitial", "Initial Date", value = as.Date(min(firstUpdates, na.rm=T)),
+                                             min = as.Date(min(firstUpdates, na.rm=T)), max = as.Date(max(lastUpdates, na.rm=T))),
+                                   
+                                   dateInput("CorAdvancedDateFinal", "Final Date", value = as.Date(max(lastUpdates, na.rm=T)),
+                                             min = as.Date(min(firstUpdates, na.rm=T)), max = as.Date(max(lastUpdates, na.rm=T))),
+                                   
+                                   # sliderInput("CorAdvancedDates", NULL, 
+                                   #             min = as.Date(min(firstUpdates, na.rm=T)),
+                                   #             max = as.Date(max(lastUpdates, na.rm=T)),
+                                   #             value = c(as.Date(min(firstUpdates, na.rm=T)),
+                                   #                       as.Date(max(lastUpdates, na.rm=T)))),
                                    h3("Regions"),
                                    selectInput("regionType", NULL, c("Communities", "Provinces")),
                                    actionButton("selectAllTrend", "Select All"),
@@ -238,8 +246,8 @@ navbarPage("DatAC: Data Against COVID-19", id="nav", theme = shinytheme("lumen")
                                       br(),
                                       br(),
 
-                                      tags$a(tags$img(src="logoEASP2020.png", width = "200px"),
-                                             href="https://www.easp.es/"))
+                                      tags$a(tags$img(src="logoEASP2020.jpg", width = "200px"),
+                                             href="https://www.easp.es/", target="_blank"))
                       )
                     )
                       )
@@ -267,7 +275,9 @@ navbarPage("DatAC: Data Against COVID-19", id="nav", theme = shinytheme("lumen")
                             variables can be selected, as well as the dates to take into account and the model.
                             The implemented models are polynomial model, correlation and loess regression. For 
                             polynomial model, the grade can be selected (from 1 to 6). For correlation, the method
-                            can be chasen as well.
+                            can be chasen as well. In addition, correlation can be corrected by lockdown days. To do
+                            this, a partial correlation is calculated controlling for the number of days since
+                            lockdown was declared in Spain (March 14th, 2020).
                             
                             A lag can be applied to the second variable. For instance, if
                             2020-01-01 to 2020-01-31 perdiod with a 10 days lag are selected, variable 1 will contain 

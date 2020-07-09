@@ -773,7 +773,8 @@ shinyServer(function(input, output, session) {
     # Fit model
     modelResults <- reactive({
         req(c(variable1SingleFinal(), variable2SingleFinal(), 
-              input$singleAnalysisDates, input$regionsSelectedSingleAnalysis,
+              input$singleAnalysisDateInitial, input$singleAnalysisDateFinal,
+              input$regionsSelectedSingleAnalysis,
               input$modelSingleAnalysis, input$lagSingleRegion))
         
 
@@ -783,12 +784,14 @@ shinyServer(function(input, output, session) {
             req(input$regionsSelectedSingleAnalysis %in% rownames(SpainCommunities[[1]]))
             data1 <- SpainCommunities[[variable1SingleFinal()]][input$regionsSelectedSingleAnalysis, , drop = F]
             data2 <- SpainCommunities[[variable2SingleFinal()]][input$regionsSelectedSingleAnalysis,, drop = F]
+            dataAlarm <- SpainCommunities[["daysAlarm"]][input$regionsSelectedSingleAnalysis,, drop = F]
         }
         
         else {
             req(input$regionsSelectedSingleAnalysis %in% rownames(SpainProvinces[[1]]))
             data1 <- SpainProvinces[[variable1SingleFinal()]][input$regionsSelectedSingleAnalysis,, drop = F]
             data2 <- SpainProvinces[[variable2SingleFinal()]][input$regionsSelectedSingleAnalysis,, drop = F]
+            dataAlarm <- SpainProvinces[["daysAlarm"]][input$regionsSelectedSingleAnalysis,, drop = F]
         }
 
         validate(need(length(na.omit(data1[1,])) > 0 & 
@@ -796,8 +799,8 @@ shinyServer(function(input, output, session) {
                  message = "No data for one of the variables"))
         
 
-        dateInitial <- input$singleAnalysisDates[1]
-        dateFinal <- input$singleAnalysisDates[2]
+        dateInitial <- input$singleAnalysisDateInitial
+        dateFinal <- input$singleAnalysisDateFinal
         
         req(dateFinal > dateInitial)
         
@@ -819,9 +822,11 @@ shinyServer(function(input, output, session) {
         }
         if (input$modelSingleAnalysis == "Correlation") {
             corMethod <- input$corMethodSingleAnalysis
+            correctCor <- input$correctCor
         }
         else {
             corMethod <- NULL
+            correctCor <- NULL
         }
         
 
@@ -833,7 +838,7 @@ shinyServer(function(input, output, session) {
                    as.character(dateInitial), 
                    as.character(dateFinal),
                    input$modelSingleAnalysis,
-                   order, corMethod, input$lagSingleRegion)
+                   order, corMethod, dataAlarm, correctCor, input$lagSingleRegion)
         
     })
     
@@ -1104,7 +1109,7 @@ shinyServer(function(input, output, session) {
     
     # Plot longitudinal data with several variables
     output$plotMultiLong <- renderPlotly({
-        req(input$CorAdvancedDates, input$lagMultiregion)
+        req(input$CorAdvancedDateInitial, input$CorAdvancedDateFinal, input$lagMultiregion)
         req(variable1AnalysisFinal() != "None")
         req(length(input$regionsSelected) > 0)
         
@@ -1117,8 +1122,8 @@ shinyServer(function(input, output, session) {
             data <- SpainProvinces
         }
         
-        dateInitial <- as.character(input$CorAdvancedDates[1])
-        dateFinal <- as.character(input$CorAdvancedDates[2])
+        dateInitial <- as.character(input$CorAdvancedDateInitial)
+        dateFinal <- as.character(input$CorAdvancedDateFinal)
         
         validate(need(dateFinal > dateInitial,
                       message = "Select at least 2 days at the left panel"))
@@ -1156,7 +1161,7 @@ shinyServer(function(input, output, session) {
     # Advanced scatter plot
     output$plotCorAdvanced <- renderPlotly({
         req(c(variable1AnalysisFinal(), variable2AnalysisFinal(), 
-              input$CorAdvancedDates, input$regionsSelected, input$lagMultiregion))
+              input$CorAdvancedDateInitial, input$CorAdvancedDateFinal, input$regionsSelected, input$lagMultiregion))
         req(length(input$regionsSelected) > 0)
         
         
@@ -1179,8 +1184,8 @@ shinyServer(function(input, output, session) {
         
 
         
-        dateInitial <- input$CorAdvancedDates[1]
-        dateFinal <- input$CorAdvancedDates[2]
+        dateInitial <- input$CorAdvancedDateInitial
+        dateFinal <- input$CorAdvancedDateFinal
         
         req(dateFinal > dateInitial)
         

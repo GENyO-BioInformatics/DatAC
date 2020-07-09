@@ -7,6 +7,7 @@ library(ggplot2)
 library(plotly)
 library(rgdal)
 library(scales)
+library(ppcor)
 library(plyr)
 library(leaflet.extras) # For fullscreen
 library(leaflet.extras2) # For printing map
@@ -754,7 +755,7 @@ lmp <- function (modelobject) {
 
 
 # Generates plot and model results
-.calcModel <- function(data1, data2, main, xlab, ylab, dateInitial, dateFinal, model, order, corMethod, lag){
+.calcModel <- function(data1, data2, main, xlab, ylab, dateInitial, dateFinal, model, order, corMethod, dataAlarm, correctCor, lag){
   
   dateInitialLag = as.character(as.Date(dateInitial) + lag)
   dateFinalLag = as.character(as.Date(dateFinal) + lag)
@@ -805,6 +806,8 @@ lmp <- function (modelobject) {
     dateInitial2 <- commonDates[1]
     dateFinal2 <- commonDates[length(commonDates)]
     
+    dataAlarm <- dataAlarm[,which(colnames(dataAlarm) == dateInitial2):which(colnames(dataAlarm) == dateFinal2), drop = F]
+
     if (dateInitial2 != dateInitial | dateFinal2 != dateFinal){
       main = paste(paste(dateInitial2, dateFinal2, sep = " - "), "<br />(No data for other dates)")
     }
@@ -821,8 +824,12 @@ lmp <- function (modelobject) {
     }
 
     else if (model == "Correlation") {
-      fit <- lm(Value ~ N, data = dataPlot)
-      modelResults <- cor.test(dataPlot$N, dataPlot$Value, method = corMethod)
+      if (!correctCor) {
+        modelResults <- cor.test(dataPlot$N, dataPlot$Value, method = corMethod)
+      }
+      else {
+        modelResults <- pcor.test(dataPlot$N, dataPlot$Value, c(dataAlarm), method = corMethod)
+      }
     }
     
     else if (model == "Loess"){
