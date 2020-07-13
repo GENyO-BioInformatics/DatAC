@@ -9,7 +9,7 @@ navbarPage("DatAC: Data Against COVID-19", id="nav", theme = shinytheme("lumen")
            tabPanel("Map",
                     tags$head(tags$link(rel = "icon", type = "image/png", href = "SARS-CoV-2.png")),
                     tags$script(HTML("var header = $('.navbar > .container-fluid');
-                                        header.append('<div style=\"float:right\"><a href=\"https://inb-elixir.es/transbionet\"; target=\"_blank\"><img src=\"logoTransbionet.png\" alt=\"Transbionet\" style=\"float:right;height:50px;padding-top:1px;\"> </a></div>');
+                                        header.append('<div style=\"float:right\"><a href=\"https://inb-elixir.es/transbionet\"; target=\"_blank\"><img src=\"LogoTransbionet.png\" alt=\"Transbionet\" style=\"float:right;height:50px;padding-top:1px;\"> </a></div>');
                         console.log(header);
                         header.append('<div style=\"float:right\"><a href=\"https://www.easp.es\"; target=\"_blank\"><img src=\"logoEASP2020.jpg\" alt=\"EASP\" style=\"float:right;height:50px;padding-top:1px;\"> </a></div>');
                         console.log(header);
@@ -255,7 +255,7 @@ navbarPage("DatAC: Data Against COVID-19", id="nav", theme = shinytheme("lumen")
                                       br(),
                                       br(),
                                       
-                                      tags$a(tags$img(src="logoTransbionet.png", width = "200px"),
+                                      tags$a(tags$img(src="LogoTransbionet.png", width = "200px"),
                                              href="https://inb-elixir.es/transbionet", target="_blank")
 
 
