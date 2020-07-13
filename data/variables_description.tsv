@@ -18,7 +18,7 @@ Calculations	RateCasesCum	Incidence rate	Cumulative cases rate per 100000 habita
 	CI14	CI14	Cumulative Incidence rate per 100000 habitants in 14 days	NA
 	CI7	CI7	Cumulative Incidence rate per 100000 habitants in 7 days	NA
 	PorcentualIncrementCasesTotal	Percentage Increment	Percentage increase in the number of daily positive cases	NA
-Climatology	Temperature	Temperature	Daily average temperature (Cº)	Spanish meteorological agency (AEMET)
+Climatology	Temperature	Temperature	Daily average temperature (ºC)	Spanish meteorological agency (AEMET)
 	Precipitation	Rainfall	Daily rainfall measured in liters per square meter (l/(m^2))	Spanish meteorological agency (AEMET)
 	WindSpeed	Wind speed	Average daily wind speed (m/s)	Spanish meteorological agency (AEMET)
 	Insolation	Insolation	Time of solar insolation (hours)	Spanish meteorological agency (AEMET)

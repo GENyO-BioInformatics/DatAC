@@ -1,16 +1,21 @@
 
 
 navbarPage("DatAC: Data Against COVID-19", id="nav", theme = shinytheme("lumen"),
+           
+
 
                      
            
            tabPanel("Map",
                     tags$head(tags$link(rel = "icon", type = "image/png", href = "SARS-CoV-2.png")),
                     tags$script(HTML("var header = $('.navbar > .container-fluid');
-                    header.append('<div style=\"float:right\"><a href=\"https://www.easp.es\"; target=\"_blank\"><img src=\"logoEASP2020.jpg\" alt=\"EASP\" style=\"float:right;height:50px;padding-top:1px;\"> </a></div>');
+                                        header.append('<div style=\"float:right\"><a href=\"https://inb-elixir.es/transbionet\"; target=\"_blank\"><img src=\"logoTransbionet.png\" alt=\"Transbionet\" style=\"float:right;height:50px;padding-top:1px;\"> </a></div>');
                         console.log(header);
+                        header.append('<div style=\"float:right\"><a href=\"https://www.easp.es\"; target=\"_blank\"><img src=\"logoEASP2020.jpg\" alt=\"EASP\" style=\"float:right;height:50px;padding-top:1px;\"> </a></div>');
+                        console.log(header);
+                         header.append('<div style=\"float:right\"><a href=\"https://www.genyo.es/?lang=en\"; target=\"_blank\"><img src=\"logoGenyo.png\" alt=\"Bioinformatics Unit\" style=\"float:right;height:50px;padding-top:1px;\"> </a></div>');
                     header.append('<div style=\"float:right\"><a href=\"https://www.ugr.es/en/\"; target=\"_blank\"><img src=\"logoUGR.png\" alt=\"UGR\" style=\"float:right;height:50px;padding-top:1px; margin: 0 15px;\"> </a></div>');
-                                     header.append('<div style=\"float:right\"><a href=\"http://bioinfo.genyo.es\"; target=\"_blank\"><img src=\"logoBioinfo.png\" alt=\"Bioinformatics Unit\" style=\"float:right;height:50px;padding-top:1px;\"> </a></div>');"
+                                    "
                     )
                     ),
            
@@ -33,13 +38,7 @@ navbarPage("DatAC: Data Against COVID-19", id="nav", theme = shinytheme("lumen")
                                     uiOutput("varStations2"),
                                     uiOutput("date2UI"),
                                     
-                                    DTOutput("leftTable"),
-                                    br(),
-                                    br(),
-                                    p(paste("Last update:", max(c(lastUpdatesSpainCommunities,
-                                                                  lastUpdatesSpainProvinces), na.rm=T)))
-                                    
-                                    
+                                    DTOutput("leftTable")
                              ),
                              column(7, style='padding:0px;',
                                     tags$style(type = "text/css", "#mapOut {height: calc(100vh - 42px) !important;}"),
@@ -245,9 +244,22 @@ navbarPage("DatAC: Data Against COVID-19", id="nav", theme = shinytheme("lumen")
                                              href="https://www.genyo.es/?lang=en", target="_blank"),
                                       br(),
                                       br(),
-
+                                      
                                       tags$a(tags$img(src="logoEASP2020.jpg", width = "200px"),
-                                             href="https://www.easp.es/", target="_blank"))
+                                             href="https://www.easp.es/", target="_blank"),
+                                      br(),
+                                      br(),
+                                      
+                                      tags$a(tags$img(src="logoBioinfo.png", width = "150px"),
+                                             href="http://bioinfo.genyo.es", target="_blank"),
+                                      br(),
+                                      br(),
+                                      
+                                      tags$a(tags$img(src="logoTransbionet.png", width = "200px"),
+                                             href="https://inb-elixir.es/transbionet", target="_blank")
+
+
+                                      )
                       )
                     )
                       )
@@ -302,6 +314,8 @@ navbarPage("DatAC: Data Against COVID-19", id="nav", theme = shinytheme("lumen")
                           DTOutput("aboutTable"),
                           h2("Versions"),
                           tags$ul(
+                            tags$li("1.1 (2020-07-09): Partial correlation option added in correlation analysis
+                                    for correcting for days of lockdown."),
                             tags$li("1.0 (2020-06-08): First version.")
                           ),
                           h2("Contact"),
@@ -310,6 +324,17 @@ navbarPage("DatAC: Data Against COVID-19", id="nav", theme = shinytheme("lumen")
                             ".", .noWS = c("after-begin", "before-end"))
                           )
                       ))
+           ),
+           
+           footer = column(12, align = "center", style = "background-color:#f5f5f5;",
+                           br(),
+                           
+                           tags$a(tags$img(src="logoBioinfo.png", height = "60px"),
+                                  href="http://bioinfo.genyo.es", target="_blank"),
+                           p("DatAC web-server was developed and is maintained at the Bioinformatics Unit - GENYO", style = "font-size:18px"),
+                           p("Code is available at ", a(href = "https://github.com/GENyO-BioInformatics/DatAC", "GitHub"), style = "font-size:18px"),
+                           p(paste("Last update:", max(c(lastUpdatesSpainCommunities,
+                                                         lastUpdatesSpainProvinces), na.rm=T)))
            )
            
 )
