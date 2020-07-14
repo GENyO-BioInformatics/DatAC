@@ -261,13 +261,18 @@ lmp <- function (modelobject) {
 # Function to make a longitudinal barplot
 .plotBar <- function(data, main, ylab, dateInitial, dateFinal){
   datesNames = names(data)
+  lastDate = datesNames[length(datesNames)]
+  
   datesNames = as.Date(datesNames)
   
   dataPlot = data.frame(N = data, Date = datesNames)
   
-  plot_ly(dataPlot, x = dataPlot$Date, y = dataPlot$N, type = "bar", name = ylab, color = I("blue3"),
+  
+  plot_ly(dataPlot, x = dataPlot$Date, y = dataPlot$N, type = "bar", 
+          name = ylab, color = I("blue3"), text = lastDate,
           hovertemplate = paste('%{x}',
                                 '<br><b>%{yaxis.title.text}</b>: %{y}',
+                                '<br><b>Last record</b>: %{text}',
                                 '<extra></extra>')) %>%
     layout(title = main,
            xaxis = list(title = "Date", range = c(dateInitial, dateFinal)),
@@ -298,15 +303,17 @@ lmp <- function (modelobject) {
 # Function to make a longitudinal lineplot
 .plotLine <- function(data, main, ylab, dateInitial, dateFinal){
   datesNames = names(data)
+  lastDate <- datesNames[length(datesNames)]
   datesNames = as.Date(datesNames)
   
   dataPlot = data.frame(N = data, Date = datesNames)
   
   plot_ly(dataPlot, x = dataPlot$Date, y = dataPlot$N, name = ylab) %>%
-    add_lines(x = dataPlot$Date, y = dataPlot$Value, name = ylab, 
+    add_lines(x = dataPlot$Date, y = dataPlot$Value, name = ylab, text = lastDate,
               line = list(color='rgb(204, 0, 0)', width = 3.5), showlegend = F,
               hovertemplate = paste('%{x}',
                                     '<br><b>%{yaxis.title.text}</b>: %{y}',
+                                    '<br><b>Last record</b>: %{text}',
                                     '<extra></extra>')) %>%
     layout(title = main,
            xaxis = list(title = "Date", range = c(dateInitial, dateFinal)),
@@ -339,20 +346,26 @@ lmp <- function (modelobject) {
   
   dataMerged <- cbind.fill(data1, data2)
   datesNames <- sort(rownames(dataMerged))
+
+  lastDate1 <- names(data1)[length(data1)]
+  lastDate2 <- names(data2)[length(data2)]
   
   dataPlot = data.frame(N = dataMerged[datesNames,1], 
                         Value = dataMerged[datesNames,2], 
                         Date = as.Date(datesNames))
   
   if (sameAxis) {
-    plot_ly(dataPlot, x = dataPlot$Date, y = dataPlot$N, type = "bar", name = ylab1, color = I("blue3"),
+    plot_ly(dataPlot, x = dataPlot$Date, y = dataPlot$N, type = "bar", 
+            name = ylab1, color = I("blue3"), text = lastDate1,
             hovertemplate = paste('%{x}',
                                   '<br><b>%{yaxis.title.text}</b>: %{y}',
+                                  '<br><b>Last record</b>: %{text}',
                                   '<extra></extra>')) %>%
-      add_lines(x = dataPlot$Date, y = dataPlot$Value, 
+      add_lines(x = dataPlot$Date, y = dataPlot$Value, text = lastDate2,
                 line = list(color='rgb(204, 0, 0)', width = 3.5), showlegend = F,
                 hovertemplate = paste('%{x}',
                                       '<br><b>%{yaxis.title.text}</b>: %{y}',
+                                      '<br><b>Last record</b>: %{text}',
                                       '<extra></extra>')) %>%
       layout(title = main,
              xaxis = list(title = "Date", range = c(dateInitial, dateFinal)),
@@ -380,20 +393,25 @@ lmp <- function (modelobject) {
              ))
   }
   else {
-    plot_ly(dataPlot, x = dataPlot$Date, y = dataPlot$N, type = "bar", name = ylab1, color = I("blue3"),
+    plot_ly(dataPlot, x = dataPlot$Date, y = dataPlot$N, type = "bar", 
+            name = ylab1, color = I("blue3"), text = lastDate1,
             hovertemplate = paste('%{x}',
                                   '<br><b>%{yaxis.title.text}</b>: %{y}',
+                                  '<br><b>Last record</b>: %{text}',
                                   '<extra></extra>')) %>%
       add_lines(x = dataPlot$Date, y = dataPlot$Value, yaxis = "y2", name = ylab2, 
-                line = list(color='rgb(204, 0, 0)', width = 3.5), showlegend = F,
+                line = list(color='rgb(204, 0, 0)', width = 3.5), showlegend = F, text = lastDate2,
                 hovertemplate = paste('%{x}',
                                       '<br><b>%{yaxis.title.text}</b>: %{y}',
+                                      '<br><b>Last record</b>: %{text}',
                                       '<extra></extra>')) %>%
       layout(title = main,
              xaxis = list(title = "Date", range = c(dateInitial, dateFinal)),
-             yaxis = list(title = ylab1, showgrid = F,  fixedrange = T),
+             yaxis = list(title = ylab1, showgrid = F,  fixedrange = T,
+                          rangemode = "tozero"),
              yaxis2 = list(overlaying = "y", side = "right", 
-                           title = ylab2, showgrid = F,  fixedrange = T),
+                           title = ylab2, showgrid = F,  fixedrange = T,
+                           rangemode = "tozero"),
              margin = list(r=50)) %>%
       config(displaylogo = FALSE,
              modeBarButtonsToRemove = list(
