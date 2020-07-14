@@ -386,8 +386,8 @@ lmp <- function (modelobject) {
              ),
              
              toImageButtonOptions = list(
-               filename = paste(main, ylab1, sep="_"),
-               format = 'svg',
+               filename = paste(main, ylab1, ylab2, sep="_"),
+               format = 'png',
                width = 700,
                height = 400
              ))
@@ -428,8 +428,8 @@ lmp <- function (modelobject) {
              ),
              
              toImageButtonOptions = list(
-               filename = paste(main, ylab1, sep="_"),
-               format = 'svg',
+               filename = paste(main, ylab1, ylab2, sep="_"),
+               format = 'png',
                width = 700,
                height = 400
              ))
