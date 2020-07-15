@@ -312,6 +312,17 @@ navbarPage("DatAC: Data Against COVID-19", id="nav", theme = shinytheme("lumen")
                             In addition, a scatter plot with the data for all the selected regions es generated."),
                           h2("Variables information"),
                           DTOutput("aboutTable"),
+                          h4("Sources links"),
+                          tags$ul(
+                            tags$li(a(href = "https://cnecovid.isciii.es/covid19/", "MISAN"), "(Ministry of Health of Spain)"),
+                            tags$li(a(href= "https://github.com/datadista/datasets/tree/master/COVID%2019", "Datadista")),
+                            tags$li(a(href = "https://github.com/montera34/escovid19data", "Escovid19data")),
+                            tags$li(a(href = "http://www.juntadeandalucia.es/institutodeestadisticaycartografia", "IECA"), "(Andalusian Institute of Statistics and Cartography)"),
+                            tags$li(a(href = "https://aqportal.discomap.eea.europa.eu/", "EEA"), "(European Environment Agency)"),
+                            tags$li(a(href = "http://www.juntadeandalucia.es/medioambiente/site/rediam/", "CAGPDS"), "(Andalusian Office of Agriculture, Livestock, Fisheries and Sustainable Development)"),
+                            tags$li(a(href = "https://opendata.aemet.es/centrodedescargas/inicio", "AEMET"), "(Spanish meteorological agency)"),
+                            tags$li(a(href = "https://www.ine.es/dyngs/INEbase/en/categoria.htm?c=Estadistica_P&cid=1254734710984", "INE"), "(Institute of Statistics of Spain)")
+                          ),
                           h2("Versions"),
                           tags$ul(
                             tags$li("1.1 (2020-07-09): Partial correlation option added in correlation analysis
