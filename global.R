@@ -41,6 +41,20 @@ firstUpdatesSpainProvinces <- sapply(SpainProvinces, function(x) {return(colname
 firstUpdates = sapply(names(firstUpdatesSpainProvinces), function(x) {return(max(firstUpdatesSpainCommunities[x], firstUpdatesSpainProvinces[x], na.rm = T))})
 firstUpdates = firstUpdates[-which(names(firstUpdates) == "Population")]
 
+# Save the last record for each variable and region
+lastRecordsSpainCommunities <- lapply(SpainCommunities, function(x) {
+  apply(x, 1, function(y) {
+    y <- na.omit(y)
+    return(names(y)[length(y)])
+  })
+})
+
+lastRecordsSpainProvinces <- lapply(SpainProvinces, function(x) {
+  apply(x, 1, function(y) {
+    y <- na.omit(y)
+    return(names(y)[length(y)])
+  })
+})
 
 # Define palettes for the map
 palPolygons <- colorNumeric("Reds", NULL, reverse = F, na.color = "grey")
@@ -259,17 +273,15 @@ lmp <- function (modelobject) {
 }
 
 # Function to make a longitudinal barplot
-.plotBar <- function(data, main, ylab, dateInitial, dateFinal){
+.plotBar <- function(data, main, ylab, dateInitial, dateFinal, lastRecord){
   datesNames = names(data)
-  lastDate = datesNames[length(datesNames)]
-  
   datesNames = as.Date(datesNames)
   
   dataPlot = data.frame(N = data, Date = datesNames)
   
   
   plot_ly(dataPlot, x = dataPlot$Date, y = dataPlot$N, type = "bar", 
-          name = ylab, color = I("blue3"), text = lastDate,
+          name = ylab, color = I("blue3"), text = lastRecord,
           hovertemplate = paste('%{x}',
                                 '<br><b>%{yaxis.title.text}</b>: %{y}',
                                 '<br><b>Last record</b>: %{text}',
@@ -301,15 +313,14 @@ lmp <- function (modelobject) {
 }
 
 # Function to make a longitudinal lineplot
-.plotLine <- function(data, main, ylab, dateInitial, dateFinal){
+.plotLine <- function(data, main, ylab, dateInitial, dateFinal, lastRecord){
   datesNames = names(data)
-  lastDate <- datesNames[length(datesNames)]
   datesNames = as.Date(datesNames)
   
   dataPlot = data.frame(N = data, Date = datesNames)
   
   plot_ly(dataPlot, x = dataPlot$Date, y = dataPlot$N, name = ylab) %>%
-    add_lines(x = dataPlot$Date, y = dataPlot$Value, name = ylab, text = lastDate,
+    add_lines(x = dataPlot$Date, y = dataPlot$Value, name = ylab, text = lastRecord,
               line = list(color='rgb(204, 0, 0)', width = 3.5), showlegend = F,
               hovertemplate = paste('%{x}',
                                     '<br><b>%{yaxis.title.text}</b>: %{y}',
@@ -342,13 +353,11 @@ lmp <- function (modelobject) {
 }
 
 # Function to make a longitudinal barplot with 2 variables
-.plotBar2Vars <- function(data1, data2, main, ylab1, ylab2, dateInitial, dateFinal, sameAxis){
+.plotBar2Vars <- function(data1, data2, main, ylab1, ylab2, dateInitial, dateFinal, sameAxis,
+                          lastRecord1, lastRecord2){
   
   dataMerged <- cbind.fill(data1, data2)
   datesNames <- sort(rownames(dataMerged))
-
-  lastDate1 <- names(data1)[length(data1)]
-  lastDate2 <- names(data2)[length(data2)]
   
   dataPlot = data.frame(N = dataMerged[datesNames,1], 
                         Value = dataMerged[datesNames,2], 
@@ -356,12 +365,12 @@ lmp <- function (modelobject) {
   
   if (sameAxis) {
     plot_ly(dataPlot, x = dataPlot$Date, y = dataPlot$N, type = "bar", 
-            name = ylab1, color = I("blue3"), text = lastDate1,
+            name = ylab1, color = I("blue3"), text = lastRecord1,
             hovertemplate = paste('%{x}',
                                   '<br><b>%{yaxis.title.text}</b>: %{y}',
                                   '<br><b>Last record</b>: %{text}',
                                   '<extra></extra>')) %>%
-      add_lines(x = dataPlot$Date, y = dataPlot$Value, text = lastDate2,
+      add_lines(x = dataPlot$Date, y = dataPlot$Value, text = lastRecord2,
                 line = list(color='rgb(204, 0, 0)', width = 3.5), showlegend = F,
                 hovertemplate = paste('%{x}',
                                       '<br><b>%{yaxis.title.text}</b>: %{y}',
@@ -394,13 +403,13 @@ lmp <- function (modelobject) {
   }
   else {
     plot_ly(dataPlot, x = dataPlot$Date, y = dataPlot$N, type = "bar", 
-            name = ylab1, color = I("blue3"), text = lastDate1,
+            name = ylab1, color = I("blue3"), text = lastRecord1,
             hovertemplate = paste('%{x}',
                                   '<br><b>%{yaxis.title.text}</b>: %{y}',
                                   '<br><b>Last record</b>: %{text}',
                                   '<extra></extra>')) %>%
       add_lines(x = dataPlot$Date, y = dataPlot$Value, yaxis = "y2", name = ylab2, 
-                line = list(color='rgb(204, 0, 0)', width = 3.5), showlegend = F, text = lastDate2,
+                line = list(color='rgb(204, 0, 0)', width = 3.5), showlegend = F, text = lastRecord2,
                 hovertemplate = paste('%{x}',
                                       '<br><b>%{yaxis.title.text}</b>: %{y}',
                                       '<br><b>Last record</b>: %{text}',

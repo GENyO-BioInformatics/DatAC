@@ -37,27 +37,30 @@ shinyServer(function(input, output, session) {
     
     # Set variables depending on the focus region
     variablesRegion <- reactiveValues(data = NULL, map = NULL, 
-                                      coordinates = NULL, titlePopup = NULL)
+                                      coordinates = NULL, lastRecords = NULL,
+                                      titlePopup = NULL)
     
     observeEvent(zoomRegion(), {
         if (zoomRegion() == "SpainCommunities"){
             variablesRegion$data <- SpainCommunities
             variablesRegion$map <- mapSpainCommunities
             variablesRegion$coordinates <- coordinates$SpainCommunities
+            variablesRegion$lastRecords <- lastRecordsSpainCommunities
             variablesRegion$titlePopup <- "<strong>Community: </strong>"
         }
         else if(zoomRegion() == "SpainProvinces"){
             variablesRegion$data <- SpainProvinces
             variablesRegion$map <- mapSpainProvinces
             variablesRegion$coordinates <- coordinates$SpainProvinces
+            variablesRegion$lastRecords <- lastRecordsSpainProvinces
             variablesRegion$titlePopup <- "<strong>Province: </strong>"
         }
-        else {
-            variablesRegion$data <- AndalusiaTowns
-            variablesRegion$map <- mapAndalusiaTowns
-            variablesRegion$coordinates <- coordinates$AndalusiaTowns
-            variablesRegion$titlePopup <- "<strong>Town: </strong>"
-        }
+        # else {
+        #     variablesRegion$data <- AndalusiaTowns
+        #     variablesRegion$map <- mapAndalusiaTowns
+        #     variablesRegion$coordinates <- coordinates$AndalusiaTowns
+        #     variablesRegion$titlePopup <- "<strong>Town: </strong>"
+        # }
     })
     
     # If zoomRegion changes, remove the previous polygons and circles in the map
@@ -326,7 +329,7 @@ shinyServer(function(input, output, session) {
         else {            
             dataOut = data[[variable1Final()]][map@data[,1], 1]
         }
-        
+
         return(dataOut)
     })
     
@@ -370,6 +373,7 @@ shinyServer(function(input, output, session) {
                       message = "Select Variable 1 or 2 at the left panel"))
 
         data <- variablesRegion[["data"]]
+        lastRecords <- variablesRegion[["lastRecords"]]
         
         validate(need(input$dateMapFinal > input$dateMapInitial,
                       message = "Final date must be later than initial date"))
@@ -409,12 +413,16 @@ shinyServer(function(input, output, session) {
                 sameAxis <- FALSE
                 ylab1 <- titles[variable1Final()]
             }
+            
+            lastRecord1 <- lastRecords[[variable1Final()]][regionSelected]
+            lastRecord2 <- lastRecords[[variable2Final()]][regionSelected]
 
             .plotBar2Vars(data[[variable1Final()]][regionSelected,], 
                           data[[variable2Final()]][regionSelected,],
                           main = regionSelected, ylab1 = ylab1,
                           ylab2 = titles[variable2Final()],
-                          input$dateMapInitial, input$dateMapFinal, sameAxis)
+                          input$dateMapInitial, input$dateMapFinal, sameAxis,
+                          lastRecord1, lastRecord2)
         }
         else if (variable1Final() != "None" && ncol(SpainProvinces[[variable1Final()]]) > 1 
                  && length(na.omit(data[[variable1Final()]][regionSelected,])) > 0
@@ -423,10 +431,11 @@ shinyServer(function(input, output, session) {
             validate(need(input$dateMapInitial <= lastUpdates[variable1Final()] & 
                               input$dateMapFinal >= firstUpdates[variable1Final()],
                           message = "No data for these dates"))
+            lastRecord <- lastRecords[[variable1Final()]][regionSelected]
             
             .plotBar(data[[variable1Final()]][regionSelected,], 
                      main = regionSelected, ylab = titles[variable1Final()],
-                     input$dateMapInitial, input$dateMapFinal)
+                     input$dateMapInitial, input$dateMapFinal, lastRecord)
         }
         else if (variable2Final() != "None" && ncol(SpainProvinces[[variable2Final()]]) > 1 &&
                  length(na.omit(data[[variable2Final()]][regionSelected,])) > 0
@@ -435,9 +444,12 @@ shinyServer(function(input, output, session) {
             validate(need(input$dateMapInitial <= lastUpdates[variable2Final()] &
                               input$dateMapFinal >= firstUpdates[variable2Final()],
                           message = "No data for these dates"))
+            
+            lastRecord <- lastRecords[[variable1Final()]][regionSelected]
+            
             .plotLine(data[[variable2Final()]][regionSelected,], 
                       main = regionSelected, ylab = titles[variable2Final()],
-                      input$dateMapInitial, input$dateMapFinal)        }
+                      input$dateMapInitial, input$dateMapFinal, lastRecord)        }
         
     })
     
@@ -482,7 +494,9 @@ shinyServer(function(input, output, session) {
         popup_dat <- paste0(variablesRegion[["titlePopup"]],
                             names(data1_noNA),
                             "<br><strong>", titles[variable1Final()], ": </strong>",
-                            data1_noNA)
+                            data1_noNA,
+                            "<br><strong>Last record: </strong>", 
+                            variablesRegion[["lastRecords"]][[variable1Final()]])
         leafletProxy("mapOut", data=map) %>%
             clearGroup(group = "circles") %>%
             removeControl(layerId = "legendCircles") %>%
@@ -521,7 +535,9 @@ shinyServer(function(input, output, session) {
             popup_dat <- paste0(variablesRegion[["titlePopup"]],
                                 map@data[,1],
                                 "<br><strong>", titles[variable2Final()], ": </strong>",
-                                data2())
+                                data2(),
+                                "<br><strong>Last record: </strong>", 
+                                variablesRegion[["lastRecords"]][[variable2Final()]])
             leafletProxy("mapOut", data=map) %>%
                 removeShape(layerId =  paste0(map@data[,1], "Polygon")) %>%
                 removeControl(layerId = "legendPolygons") %>%
