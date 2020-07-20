@@ -607,9 +607,10 @@ lmp <- function (modelobject) {
                                       '<br><b>%{yaxis.title.text}</b>: %{y}',
                                       '<extra></extra>')) %>%
       layout(xaxis = list(range = c(dateInitial, dateFinal)),
-             yaxis = list(title = ylab1, showgrid = F,  fixedrange = T),
+             yaxis = list(title = ylab1, showgrid = F,  fixedrange = T, rangemode = "tozero"),
              yaxis2 = list(overlaying = "y", side = "right", 
-                           title = ylab2, showgrid = F,  fixedrange = T, autoMargin = T),
+                           title = ylab2, showgrid = F,  fixedrange = T,
+                           rangemode = "tozero", autoMargin = T),
              legend = list(x = 1.08, xanchor= 'left')
       ) %>%
       config(displaylogo = FALSE,
