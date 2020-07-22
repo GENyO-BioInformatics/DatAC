@@ -323,6 +323,7 @@ navbarPage("DatAC: Data Against COVID-19", id="nav", theme = shinytheme("lumen")
                             tags$li(a(href = "https://opendata.aemet.es/centrodedescargas/inicio", "AEMET"), "(Spanish meteorological agency)"),
                             tags$li(a(href = "https://www.ine.es/dyngs/INEbase/en/categoria.htm?c=Estadistica_P&cid=1254734710984", "INE"), "(Institute of Statistics of Spain)")
                           ),
+                          p("* There may be some differences in data from communities and provinces due to these are provided from different sources."),
                           h2("Versions"),
                           tags$ul(
                             tags$li("1.1 (2020-07-09): Partial correlation option added in correlation analysis
