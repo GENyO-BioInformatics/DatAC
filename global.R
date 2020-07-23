@@ -45,15 +45,25 @@ firstUpdates = firstUpdates[-which(names(firstUpdates) == "Population")]
 lastRecordsSpainCommunities <- lapply(SpainCommunities, function(x) {
   apply(x, 1, function(y) {
     y <- na.omit(y)
-    return(names(y)[length(y)])
+    if (length(names(y)) > 0) {
+      return(names(y)[length(y)])
+    }
+    else{
+      return("No data")
+    }
   })
 })
 
 lastRecordsSpainProvinces <- lapply(SpainProvinces, function(x) {
   apply(x, 1, function(y) {
     y <- na.omit(y)
-    return(names(y)[length(y)])
-  })
+    if (length(names(y)) > 0) {
+      return(names(y)[length(y)])
+    }
+    else{
+      return("No data")
+    }
+    })
 })
 
 # Define palettes for the map
