@@ -33,7 +33,7 @@ navbarPage("DatAC: Data Against COVID-19", id="nav", theme = shinytheme("lumen")
                                     
                                     h4("Variable 2 (colours)"),
                                     selectizeInput("variable2", label = NULL,
-                                                   choices = choicesMap2, selected="Temperature"),
+                                                   choices = choicesMap2, selected="Deaths"),
                                     uiOutput("varAverage2"),
                                     uiOutput("varStations2"),
                                     uiOutput("date2UI"),
@@ -57,7 +57,7 @@ navbarPage("DatAC: Data Against COVID-19", id="nav", theme = shinytheme("lumen")
                              )
                     )
            ),
-           tabPanel("Modelling",
+           tabPanel("Trend analysis",
                     fluidRow(
                       sidebarPanel(width = 2,
                                    div(style="text-align:center; font-size:20px;", tags$strong("Model")),
@@ -282,7 +282,7 @@ navbarPage("DatAC: Data Against COVID-19", id="nav", theme = shinytheme("lumen")
                             If you only select one variable, an interactive barplot will be generated. If you select
                             two variables, a line with the second variable will be drawn over the bars. In addition,
                             a correlation plot will be drawn with a regression line."),
-                          h2("Modelling"),
+                          h2("Trend analysis"),
                           p("In this tab, the relationship between two variables can be analysed. At the left panel,
                             variables can be selected, as well as the dates to take into account and the model.
                             The implemented models are polynomial model, correlation and loess regression. For 
@@ -297,7 +297,7 @@ navbarPage("DatAC: Data Against COVID-19", id="nav", theme = shinytheme("lumen")
                             2020-02-10 period. Negative lag can be also applied. This is a way to find correlations
                             between two variables with some time difference.
                             
-                            The modelling results appear at the right panel, with the model, R2 and P-value for 
+                            The analysis results appear at the right panel, with the model, R2 and P-value for 
                             polynomial models and correlation value and P-value for correlation. Loess regression
                             does not return any results, given than it is difficult to translate this regression 
                             to a mathematical equation.
@@ -346,7 +346,10 @@ navbarPage("DatAC: Data Against COVID-19", id="nav", theme = shinytheme("lumen")
                            p("DatAC web-server was developed and is maintained at the Bioinformatics Unit - GENYO", style = "font-size:18px"),
                            p("Code is available at ", a(href = "https://github.com/GENyO-BioInformatics/DatAC", "GitHub"), style = "font-size:18px"),
                            p(paste("Last update:", max(c(lastUpdatesSpainCommunities,
-                                                         lastUpdatesSpainProvinces), na.rm=T)))
+                                                         lastUpdatesSpainProvinces), na.rm=T))),
+                           p("DatAC is intended only for scientific research, so it should not be used for taking any
+                             medical or governance decision. We are not responsable for the data shown or any 
+                             conclusions that could be derived from the data.")
            )
            
 )

@@ -406,7 +406,7 @@ lmp <- function (modelobject) {
              
              toImageButtonOptions = list(
                filename = paste(main, ylab1, ylab2, sep="_"),
-               format = 'png',
+               format = 'svg',
                width = 700,
                height = 400
              ))
@@ -448,7 +448,7 @@ lmp <- function (modelobject) {
              
              toImageButtonOptions = list(
                filename = paste(main, ylab1, ylab2, sep="_"),
-               format = 'png',
+               format = 'svg',
                width = 700,
                height = 400
              ))
@@ -866,7 +866,8 @@ lmp <- function (modelobject) {
         modelResults <- cor.test(dataPlot$N, dataPlot$Value, method = corMethod)
       }
       else {
-        modelResults <- pcor.test(dataPlot$N, dataPlot$Value, c(dataAlarm), method = corMethod)
+        modelResults <- try(pcor.test(dataPlot$N, dataPlot$Value, c(dataAlarm),
+                                      method = corMethod)) # Fails with NAs
       }
       fit <- TRUE # To generate the plot anyway
     }
@@ -876,7 +877,7 @@ lmp <- function (modelobject) {
       modelResults <- fit
     }
     
-    if (class(fit) != "try-error"){
+    if (class(fit) != "try-error" & class(modelResults) != "try-error"){
       plot <- plot_ly(dataPlot, x = ~N) %>% 
         add_markers(y = ~Value, showlegend = F,
                     hovertemplate = paste('<b>%{yaxis.title.text}</b>: %{y}',

@@ -619,7 +619,7 @@ shinyServer(function(input, output, session) {
     }, ignoreInit = TRUE)
     
     ##############################################
-    ### SINGLE REGION (MODELLING) ANALYSIS TAB ###
+    ### SINGLE REGION (Trend analysis) ANALYSIS TAB ###
     ##############################################
     # Render the roling average options depending on the selected variable
     
