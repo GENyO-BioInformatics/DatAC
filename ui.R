@@ -330,6 +330,11 @@ navbarPage("DatAC: Data Against COVID-19", id="nav", theme = shinytheme("lumen")
                                     for correcting for days of lockdown."),
                             tags$li("1.0 (2020-06-08): First version.")
                           ),
+                          h2("Citation"),
+                          p("If you use DatAC, please cite the following article:"),
+                          p("Martorell-Marugán J, Villatoro-García JA, et al. DatAC: A visual analytics platform to explore climate and air quality indicators associated with the COVID-19 pandemic in Spain.
+Science of The Total Environment, 2020, 141424. ", a(href = "https://doi.org/10.1016/j.scitotenv.2020.141424", 
+                                                     "https://doi.org/10.1016/j.scitotenv.2020.141424")),
                           h2("Contact"),
                           p("If you have any questions or suggestions, you cant contact us at ", 
                             a(href = "mailto:bioinfo@genyo.es", "bioinfo@genyo.es", .noWS = "outside"), 
@@ -345,6 +350,7 @@ navbarPage("DatAC: Data Against COVID-19", id="nav", theme = shinytheme("lumen")
                                   href="http://bioinfo.genyo.es", target="_blank"),
                            p("DatAC web-server was developed and is maintained at the Bioinformatics Unit - GENYO", style = "font-size:18px"),
                            p("Code is available at ", a(href = "https://github.com/GENyO-BioInformatics/DatAC", "GitHub"), style = "font-size:18px"),
+                           p("Article is published at ", a(href = "https://doi.org/10.1016/j.scitotenv.2020.141424", "Science of the Total Environment"), "journal", style = "font-size:18px"),
                            p(paste("Last update:", max(c(lastUpdatesSpainCommunities,
                                                          lastUpdatesSpainProvinces), na.rm=T))),
                            p("DatAC is intended only for scientific research, so it should not be used for taking any
