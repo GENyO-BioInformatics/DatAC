@@ -62,7 +62,7 @@ navbarPage("DatAC: Data Against COVID-19", id="nav", theme = shinytheme("lumen")
                       sidebarPanel(width = 2,
                                    div(style="text-align:center; font-size:20px;", tags$strong("Model")),
                                    selectInput("modelSingleAnalysis", "Type",
-                                               c("Polynomial", "Correlation", "Loess")),
+                                               c("Polynomial", "Correlation", "GAM", "Loess")),
                                    conditionalPanel(
                                      "input.modelSingleAnalysis == 'Polynomial'",
                                      selectInput("orderSingleAnalysis", "Order",
@@ -106,7 +106,13 @@ navbarPage("DatAC: Data Against COVID-19", id="nav", theme = shinytheme("lumen")
                                    uiOutput("regionsSingleAnalysis")
                       ),
                       column(6,
-                             wellPanel(withSpinner(plotlyOutput("plotModel", height = 600), type = 5))
+                             conditionalPanel(
+                               "input.modelSingleAnalysis != 'GAM'",
+                               wellPanel(withSpinner(plotlyOutput("plotModel1", height = 600), type = 5))),
+                             
+                             conditionalPanel(
+                               "input.modelSingleAnalysis == 'GAM'",
+                               wellPanel(withSpinner(plotOutput("plotModel2", height = 600), type = 5)))
                       ),
                       column(4,
                              wellPanel(
@@ -326,6 +332,7 @@ navbarPage("DatAC: Data Against COVID-19", id="nav", theme = shinytheme("lumen")
                           p("* There may be some differences in data from communities and provinces due to these are provided from different sources."),
                           h2("Versions"),
                           tags$ul(
+                            tags$li("1.2 (2020-08-20): GAM models added in Trend Analysis tab."),
                             tags$li("1.1 (2020-07-09): Partial correlation option added in correlation analysis
                                     for correcting for days of lockdown."),
                             tags$li("1.0 (2020-06-08): First version.")

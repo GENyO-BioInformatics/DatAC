@@ -9,6 +9,7 @@ library(rgdal)
 library(scales)
 library(ppcor)
 library(plyr)
+library(mgcv) # For GAM models
 library(leaflet.extras) # For fullscreen
 library(leaflet.extras2) # For printing map
 library(shinycssloaders)
@@ -871,13 +872,17 @@ lmp <- function (modelobject) {
       }
       fit <- TRUE # To generate the plot anyway
     }
+    else if (model == "GAM"){
+      modelResults <- try(gam(N ~  s(Value) , data = dataPlot))
+      fit <- TRUE
+    }
     
     else if (model == "Loess"){
       fit <- loess(dataPlot$Value ~ dataPlot$N)
       modelResults <- fit
     }
     
-    if (class(fit) != "try-error" & class(modelResults) != "try-error"){
+    if (model != "GAM" & class(fit) != "try-error" & class(modelResults) != "try-error"){
       plot <- plot_ly(dataPlot, x = ~N) %>% 
         add_markers(y = ~Value, showlegend = F,
                     hovertemplate = paste('<b>%{yaxis.title.text}</b>: %{y}',
@@ -913,6 +918,11 @@ lmp <- function (modelobject) {
       }
       
       return(list(plot, modelResults))
+    }
+    
+    else if (class(modelResults) != "try-error"){
+      title = paste(rownames(data1), gsub(" <br />", "\n", main), sep = "\n")
+      return(list(c(title, ylab, xlab), modelResults))
     }
     
     else {

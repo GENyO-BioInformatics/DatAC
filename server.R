@@ -859,9 +859,16 @@ shinyServer(function(input, output, session) {
     })
     
     # Scatter plot with modelling
-    output$plotModel <- renderPlotly({
+    output$plotModel1 <- renderPlotly({
+        req(input$modelSingleAnalysis != "GAM")
         validate(need(modelResults(), message = "Insufficient data to calculate this model. Please, select other model or data."))
         modelResults()[[1]]
+    })
+    output$plotModel2 <- renderPlot({
+        req(input$modelSingleAnalysis == "GAM")
+        validate(need(modelResults(), message = "Insufficient data to calculate this model. Please, select other model or data."))
+        titles <- modelResults()[[1]]
+        plot(modelResults()[[2]], main = titles[1], xlab = titles[2], ylab = titles[3])
     })
     
     
@@ -919,7 +926,7 @@ shinyServer(function(input, output, session) {
                                      columnDefs = list(list(width = '50px', targets = 0))))
         }
         
-        else {
+        else if (input$modelSingleAnalysis == "Correlation") {
             p <- modelResults$p.value
             corVal <- round(modelResults$estimate, 4)
             
@@ -929,6 +936,18 @@ shinyServer(function(input, output, session) {
                       colnames = rep("", ncol(table)),
                       options = list(paging = F, searching = F, info = F, ordering = F,
                                      autoWidth = TRUE))
+        }
+        else {
+            modelResults <- summary(modelResults)
+            R2 = round(modelResults$r.sq, 4)
+            p = modelResults$s.pv
+            table = data.frame(param = c("R^2", "P-value"), val = c(as.character(R2), as.character(p)))
+            
+            datatable(table, filter = "none", selection = "none", style = "bootstrap", rownames = F,
+                      colnames = rep("", ncol(table)),
+                      options = list(paging = F, searching = F, info = F, ordering = F,
+                                     autoWidth = TRUE))
+            
         }
         
     })
