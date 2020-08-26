@@ -231,12 +231,12 @@ navbarPage("DatAC: Data Against COVID-19", id="nav", theme = shinytheme("lumen")
                                       h3("Collaborators"),
                                       tags$div(
                                         tags$ul(
-                                          tags$li(tags$b("Francisco Requena"), ", Imagine Institute of Genetic Diseases"),
-                                          tags$li(tags$b("Juan Julián Merelo"), ", Department of Computer Architecture and Technology, University of Granada"),
-                                          tags$li(tags$b("Marina Lacasaña"), ", Andalusian School of Public Health"),
-                                          tags$li(tags$b("Juan de Dios Luna"), ", Department of Statistics, University of Granada"),
-                                          tags$li(tags$b("Juan José Díaz-Mochón"), ", Centre for Genomics and Oncological Research (GENYO)"),
-                                          tags$li(tags$b("José Antonio Lorente"), ", Centre for Genomics and Oncological Research (GENYO)")
+                                          tags$li(tags$b("Francisco Requena,"), "Imagine Institute of Genetic Diseases"),
+                                          tags$li(tags$b("Juan Julián Merelo,"), "Department of Computer Architecture and Technology, University of Granada"),
+                                          tags$li(tags$b("Marina Lacasaña,"), "Andalusian School of Public Health"),
+                                          tags$li(tags$b("Juan de Dios Luna,"), "Department of Statistics, University of Granada"),
+                                          tags$li(tags$b("Juan José Díaz-Mochón,"), "Centre for Genomics and Oncological Research (GENYO)"),
+                                          tags$li(tags$b("José Antonio Lorente,"), "Centre for Genomics and Oncological Research (GENYO)")
                                         )
                                       )
                                ),
