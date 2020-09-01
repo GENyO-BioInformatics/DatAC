@@ -332,6 +332,7 @@ navbarPage("DatAC: Data Against COVID-19", id="nav", theme = shinytheme("lumen")
                           p("* There may be some differences in data from communities and provinces due to these are provided from different sources."),
                           h2("Versions"),
                           tags$ul(
+                            tags$li("1.3 (2020-09-01): Mobility data added."),
                             tags$li("1.2 (2020-08-20): GAM models added in Trend Analysis tab."),
                             tags$li("1.1 (2020-07-09): Partial correlation option added in correlation analysis
                                     for correcting for days of lockdown."),

@@ -1,31 +1,32 @@
-	Name R	Variable	Description	Source
-COVID-19 Metrics	CasesTotal	Cumulative cases (Total)	Cumulative positive cases (PCR + Antibody tests)	DatAC
-	newCasesTotal	Daily cases (Total)	Daily positive cases (PCR + Antibody tests)	MISAN
-	PCR	Cumulative cases (PCR+)	Cumulative PCR positive cases	DatAC
-	newPCR	Daily cases (PCR+)	Daily PCR positive cases	MISAN
-	Deaths	Cumulative deaths	Cumulative COVID-19 deaths	DatAC
-	newDeaths	Daily deaths	Daily COVID-19 deaths	Datadista, Escovid19, IECA
-	Cured	Cumulative recovered	Cumulative recovered COVID-19 patiens	MISAN, Datadista, Escovid19
-	newCured	Daily recovered	Daily recovered COVID-19 patiens	IECA, DatAC (Escovid19, Datatista)
-	Hospitalized	Cumulative hospitalized	Cumulative hospitalized COVID-19 patiens	Datadista, Escovid19, DatAC
-	newHospitalized	Daily hospitalized	Daily hospitalized COVID-19 patiens	IECA, DatAC (Escovid19, Datatista)
-	UCI	Cumulative ICU	Cumulative COVID-19 patiens transferred to ICU	Datadista, Escovid19, IECA
-	newUCI	Daily ICU	Daily COVID-19 patiens transferred to ICU	DatAC
-Calculations	RateCasesCum	Incidence rate	Cumulative cases rate per 100000 habitants. (Cases/Population) * 100000	DatAC
-	RateDeathsCum	Deaths rate	Cumulative deaths rate per 100000 habitants. (Deaths/Population) * 100000	DatAC
-	PercentageCured.CasesTotal	CRR	Case recovered rate. Percentage of recovered COVID-19 patiens by total cases. (Recovered/Cases)*100	DatAC
-	PercentageDeaths.CasesTotal	CFR	Case fatality rate. Percentage of COVID-19 deaths by total cases. (Deaths/Cases) * 100	DatAC
-	CI14	CI14	Cumulative Incidence rate per 100000 habitants in 14 days	DatAC
-	CI7	CI7	Cumulative Incidence rate per 100000 habitants in 7 days	DatAC
-	PorcentualIncrementCasesTotal	Percentage Increment	Percentage increase in the number of daily positive cases	DatAC
-Climatology	Temperature	Temperature	Daily average temperature (ºC)	AEMET
-	Precipitation	Rainfall	Daily rainfall measured in liters per square meter (l/(m^2))	AEMET
-	WindSpeed	Wind speed	Average daily wind speed (m/s)	AEMET
-	Insolation	Insolation	Time of solar insolation (hours)	AEMET
-Air quality	CO	CO	CO (mg/m^3)	EEA, CAGPDS
-	NO2	NO2	NO2 (ug/m^3)	EEA, CAGPDS
-	O3	O3	O3 (ug/m^3)	EEA, CAGPDS
-	SO2	SO2	SO2 (ug/m^3)	EEA, CAGPDS
-	PM10	PM10	Particulate matter 10 micrometers or less in diameter (ug/m^3)	EEA, CAGPDS
-	PM2.5	PM2.5	Particulate matter 2.5 micrometers or less in diameter (ug/m^3)	EEA, CAGPDS
-Demographics	Population	Population	Population of the region	INE, IECA
+Name R	Variable	Description	Source
+CasesTotal	Cumulative cases (Total)	Cumulative positive cases (PCR + Antibody tests)	DatAC
+newCasesTotal	Daily cases (Total)	Daily positive cases (PCR + Antibody tests)	MISAN
+PCR	Cumulative cases (PCR+)	Cumulative PCR positive cases	DatAC
+newPCR	Daily cases (PCR+)	Daily PCR positive cases	MISAN
+Deaths	Cumulative deaths	Cumulative COVID-19 deaths	DatAC
+newDeaths	Daily deaths	Daily COVID-19 deaths	Datadista, Escovid19data, IECA
+Cured	Cumulative recovered	Cumulative recovered COVID-19 patiens	MISAN, Datadista, Escovid19data
+newCured	Daily recovered	Daily recovered COVID-19 patiens 	IECA, DatAC
+Hospitalized	Cumulative hospitalized	Cumulative hospitalized  COVID-19 patiens	Datadista, Escovid19data, DatAC
+newHospitalized	Daily hospitalized	Daily hospitalized COVID-19 patiens 	IECA, DatAC
+UCI	Cumulative ICU	Cumulative COVID-19 patiens transferred to ICU	Datadista, Escovid19data
+newUCI	Daily ICU	Daily COVID-19 patiens transferred to ICU	IECA, DatAC
+RateCasesCum	Incidence rate	Cumulative cases rate per 100000 habitants. (Cases/Population) * 100000	DatAC
+RateDeathsCum	Deaths rate	Cumulative deaths rate per 100000 habitants. (Deaths/Population) * 100000	DatAC
+PercentageCured.CasesTotal	CRR	Case recovered rate. Percentage of recovered COVID-19 patiens by total cases. (Recovered/Cases)*100	DatAC
+PercentageDeaths.CasesTotal	CFR	Case fatality rate. Percentage of COVID-19 deaths by total cases. (Deaths/Cases) * 100	DatAC
+CI14	CI14	Cumulative Incidence rate per 100000 habitants in 14 days	DatAC
+CI7	CI7	Cumulative Incidence rate per 100000 habitants in 7 days	DatAC
+PorcentualIncrementCasesTotal	Percentage Increment	Percentage increase in the number of daily positive cases	DatAC
+Temperature	Temperature	Daily average temperature (ÂºC)	AEMET
+Precipitation	Rainfall	Daily rainfall measured in liters per square meter (l/(m^2))	AEMET
+WindSpeed	Wind speed	Average daily wind speed (m/s)	AEMET
+Insolation	Insolation	Time of solar insolation (hours)	AEMET
+CO	CO	CO (mg/m^3)	EEA, CAGPDS
+NO2	NO2	NO2 (ug/m^3)	EEA, CAGPDS
+O3	O3	O3 (ug/m^3)	EEA, CAGPDS
+SO2	SO2	SO2 (ug/m^3)	EEA, CAGPDS
+PM10	PM10	Particulate matter 10 micrometers or less in diameter (ug/m^3)	EEA, CAGPDS
+PM2.5	PM2.5	Particulate matter 2.5 micrometers or less in diameter (ug/m^3)	EEA, CAGPDS
+mobility	Mobility	Percentage of population that has left the area	INE
+Population	Population	Population of the region	INE, IECA

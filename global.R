@@ -29,7 +29,7 @@ load("data/coordinates.RData")
 
 
 # Read variables description table
-variablesDescription <- read.delim("data/variables_description.tsv")[,3:5]
+variablesDescription <- read.delim("data/variables_description.tsv")[,2:4]
 
 # Check the last and first updates dates
 lastUpdatesSpainCommunities <- sapply(SpainCommunities, function(x) {return(colnames(x)[ncol(x)])})
@@ -82,7 +82,7 @@ titles <- c("Cumulative cases (PCR+)", "Daily cases (PCR+)", "Cases (Ab+)",
             "Daily deaths (Mean 3 days)", "Daily deaths (Mean 7 days)", "Daily deaths (Mean 14 days)",
             "CI14", "CI7", "Percentage Increment",
             "Cumulative hospitalized", "Daily hospitalized", "Cumulative ICU", "Daily ICU",
-            "Incidence rate", "Population", 
+            "Incidence rate", "Mobility (%)", "Population", 
             "Mean temperature (14 days) (ºC)","Mean temperature (7 days) (ºC)", "Mean temperature (3 days) (ºC)", "Temperature (ºC)", 
             "Mean rainfall (14 days) (mm)","Mean rainfall (7 days) (mm)", "Mean rainfall (3 days) (mm)", "Rainfall (mm)", 
             "Mean wind speed (14 days) (m/S)", "Mean wind speed (7 days) (m/S)", "Mean wind speed (3 days) (m/S)", "Wind speed (m/S)",
@@ -124,7 +124,7 @@ names(titles) <- c("PCR", "newPCR", "TestAC",
                    "newDeaths.RollMean3", "newDeaths.RollMean7", "newDeaths.RollMean14",
                    "CI14", "CI7", "PorcentualIncrementCasesTotal",
                    "Hospitalized", "newHospitalized", "UCI", "newUCI",
-                   "RateCasesCum", "Population", 
+                   "RateCasesCum", "mobility", "Population", 
                    "Temperature.RollMean14", "Temperature.RollMean7", "Temperature.RollMean3", "Temperature",
                    "Precipitation.RollMean14", "Precipitation.RollMean7", "Precipitation.RollMean3", "Precipitation",
                    "WindSpeed.RollMean14", "WindSpeed.RollMean7", "WindSpeed.RollMean3", "WindSpeed",
@@ -239,7 +239,8 @@ choicesVariables <- list(
                          "SO2" = "SO2",
                          "PM10" = "PM10",
                        "PM2.5" = "PM2.5"),
-  "Demographics" = list("Population" = "Population"))
+  "Demographics" = list("Mobility" = "mobility",
+                        "Population" = "Population"))
 
 choicesMap1 <- choicesVariables
 choicesMap1[["Don't show Variable 1"]]= "None"
@@ -248,11 +249,11 @@ choicesMap2 <- choicesVariables
 choicesMap2[["Don't show Variable 2"]]= "None"
 
 choicesAnalysis1 <- choicesMap1
-choicesAnalysis1[["Demographics"]] <- NULL
+choicesAnalysis1[["Demographics"]][["Population"]] <- NULL
 choicesAnalysis1[["Don't show Variable 1"]] <- NULL
 
 choicesAnalysis2 <- choicesMap2
-choicesAnalysis2[["Demographics"]] <- NULL
+choicesAnalysis2[["Demographics"]][["Population"]] <- NULL
 
 choicesSingleAnalysis2 <- choicesAnalysis2
 choicesSingleAnalysis2[["Don't show Variable 2"]] <- NULL
