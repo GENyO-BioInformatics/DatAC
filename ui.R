@@ -11,7 +11,7 @@ navbarPage("DatAC: Data Against COVID-19", id="nav", theme = shinytheme("lumen")
                     tags$script(HTML("var header = $('.navbar > .container-fluid');
                                         header.append('<div style=\"float:right\"><a href=\"https://inb-elixir.es/transbionet\"; target=\"_blank\"><img src=\"LogoTransbionet.png\" alt=\"Transbionet\" style=\"float:right;height:50px;padding-top:1px;\"> </a></div>');
                         console.log(header);
-                        header.append('<div style=\"float:right\"><a href=\"https://www.easp.es\"; target=\"_blank\"><img src=\"logoEASP2020.jpg\" alt=\"EASP\" style=\"float:right;height:50px;padding-top:1px;\"> </a></div>');
+                        header.append('<div style=\"float:right\"><a href=\"https://www.easp.es\"; target=\"_blank\"><img src=\"logoEASP2020.png\" alt=\"EASP\" style=\"float:right;height:50px;padding-top:1px;\"> </a></div>');
                         console.log(header);
                          header.append('<div style=\"float:right\"><a href=\"https://www.genyo.es/?lang=en\"; target=\"_blank\"><img src=\"logoGenyo.png\" alt=\"Bioinformatics Unit\" style=\"float:right;height:50px;padding-top:1px;\"> </a></div>');
                     header.append('<div style=\"float:right\"><a href=\"https://www.ugr.es/en/\"; target=\"_blank\"><img src=\"logoUGR.png\" alt=\"UGR\" style=\"float:right;height:50px;padding-top:1px; margin: 0 15px;\"> </a></div>');
@@ -251,7 +251,7 @@ navbarPage("DatAC: Data Against COVID-19", id="nav", theme = shinytheme("lumen")
                                       br(),
                                       br(),
                                       
-                                      tags$a(tags$img(src="logoEASP2020.jpg", width = "200px"),
+                                      tags$a(tags$img(src="logoEASP2020.png", width = "200px"),
                                              href="https://www.easp.es/", target="_blank"),
                                       br(),
                                       br(),
@@ -332,6 +332,7 @@ navbarPage("DatAC: Data Against COVID-19", id="nav", theme = shinytheme("lumen")
                           p("* There may be some differences in data from communities and provinces due to these are provided from different sources."),
                           h2("Versions"),
                           tags$ul(
+                            tags$li("1.4 (2020-09-18): Seroprevalence and punctual hositalizations data added."),
                             tags$li("1.3 (2020-09-01): Mobility data added."),
                             tags$li("1.2 (2020-08-20): GAM models added in Trend Analysis tab."),
                             tags$li("1.1 (2020-07-09): Partial correlation option added in correlation analysis

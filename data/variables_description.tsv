@@ -6,11 +6,15 @@ newPCR	Daily cases (PCR+)	Daily PCR positive cases	MISAN
 Deaths	Cumulative deaths	Cumulative COVID-19 deaths	DatAC
 newDeaths	Daily deaths	Daily COVID-19 deaths	Datadista, Escovid19data, IECA
 Cured	Cumulative recovered	Cumulative recovered COVID-19 patiens	MISAN, Datadista, Escovid19data
-newCured	Daily recovered	Daily recovered COVID-19 patiens 	IECA, DatAC
-Hospitalized	Cumulative hospitalized	Cumulative hospitalized  COVID-19 patiens	Datadista, Escovid19data, DatAC
-newHospitalized	Daily hospitalized	Daily hospitalized COVID-19 patiens 	IECA, DatAC
+newCured	Daily recovered	Daily recovered COVID-19 patiens	IECA, DatAC
+Hospitalized	Cumulative hospitalized	Cumulative hospitalized COVID-19 patiens	Datadista, Escovid19data, DatAC
+newHospitalized	Daily hospitalized	Daily hospitalized COVID-19 patiens	IECA, DatAC
+PunctualHospitalized	Punctual hospitalized	Number of COVID-19 patiens that are hospitalized in a day	Escovid19data
 UCI	Cumulative ICU	Cumulative COVID-19 patiens transferred to ICU	Datadista, Escovid19data
 newUCI	Daily ICU	Daily COVID-19 patiens transferred to ICU	IECA, DatAC
+ENE_round1	Seroprevalence-1	Percentage of people with anti-SARS-COV-2 IGg antibodies in the first round (2020/04/27 - 2020/05/11) of Spanish seroprevalence study	MISAN
+ENE_round2	Seroprevalence-2	Percentage of people with anti-SARS-COV-2 IGg antibodies in the second round (2020/05/18 - 2020/06/01) of Spanish seroprevalence study	MISAN
+ENE_round3	Seroprevalence-3	Percentage of people with anti-SARS-COV-2 IGg antibodies in the third round (2020/06/08 - 2020/06/22) of Spanish seroprevalence study	MISAN
 RateCasesCum	Incidence rate	Cumulative cases rate per 100000 habitants. (Cases/Population) * 100000	DatAC
 RateDeathsCum	Deaths rate	Cumulative deaths rate per 100000 habitants. (Deaths/Population) * 100000	DatAC
 PercentageCured.CasesTotal	CRR	Case recovered rate. Percentage of recovered COVID-19 patiens by total cases. (Recovered/Cases)*100	DatAC
@@ -18,7 +22,7 @@ PercentageDeaths.CasesTotal	CFR	Case fatality rate. Percentage of COVID-19 death
 CI14	CI14	Cumulative Incidence rate per 100000 habitants in 14 days	DatAC
 CI7	CI7	Cumulative Incidence rate per 100000 habitants in 7 days	DatAC
 PorcentualIncrementCasesTotal	Percentage Increment	Percentage increase in the number of daily positive cases	DatAC
-Temperature	Temperature	Daily average temperature (ÂºC)	AEMET
+Temperature	Temperature	Daily average temperature (ºC)	AEMET
 Precipitation	Rainfall	Daily rainfall measured in liters per square meter (l/(m^2))	AEMET
 WindSpeed	Wind speed	Average daily wind speed (m/s)	AEMET
 Insolation	Insolation	Time of solar insolation (hours)	AEMET
