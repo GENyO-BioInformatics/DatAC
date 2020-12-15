@@ -315,13 +315,13 @@ lmp <- function (modelobject) {
   dataPlot = data.frame(N = data, Date = datesNames)
   
   if (dateInitial %in% datesNames & dateFinal %in% datesNames) {
-    dataPlot = dataPlot[seq(which(dataPlot$Date == dateInitial), which(dataPlot$Date == dateFinal)),]
+    dataPlot = dataPlot[seq(which(dataPlot$Date == dateInitial), which(dataPlot$Date == dateFinal)),, drop=F]
   }
   else if (dateInitial %in% datesNames) {
-    dataPlot = dataPlot[seq(which(dataPlot$Date == dateInitial), nrow(dataPlot)),]
+    dataPlot = dataPlot[seq(which(dataPlot$Date == dateInitial), nrow(dataPlot)),, drop=F]
   }
   else if (dateFinal %in% datesNames) {
-    dataPlot = dataPlot[seq(1, which(dataPlot$Date == dateFinal)),]
+    dataPlot = dataPlot[seq(1, which(dataPlot$Date == dateFinal)),, drop=F]
   }
   
   plot_ly(dataPlot, x = dataPlot$Date, y = dataPlot$N, type = "bar", 
@@ -365,13 +365,13 @@ lmp <- function (modelobject) {
   dataPlot = data.frame(N = data, Date = datesNames)
   
   if (dateInitial %in% datesNames & dateFinal %in% datesNames) {
-    dataPlot = dataPlot[seq(which(dataPlot$Date == dateInitial), which(dataPlot$Date == dateFinal)),]
+    dataPlot = dataPlot[seq(which(dataPlot$Date == dateInitial), which(dataPlot$Date == dateFinal)),, drop=F]
   }
   else if (dateInitial %in% datesNames) {
-    dataPlot = dataPlot[seq(which(dataPlot$Date == dateInitial), nrow(dataPlot)),]
+    dataPlot = dataPlot[seq(which(dataPlot$Date == dateInitial), nrow(dataPlot)),, drop=F]
   }
   else if (dateFinal %in% datesNames) {
-    dataPlot = dataPlot[seq(1, which(dataPlot$Date == dateFinal)),]
+    dataPlot = dataPlot[seq(1, which(dataPlot$Date == dateFinal)),, drop=F]
   }
   
   plot_ly(dataPlot, x = dataPlot$Date, y = dataPlot$N, name = ylab) %>%
@@ -421,13 +421,13 @@ lmp <- function (modelobject) {
 
 
   if (as.character(dateInitial) %in% datesNames & as.character(dateFinal) %in% datesNames) {
-    dataPlot = dataPlot[seq(which(dataPlot$Date == dateInitial), which(dataPlot$Date == dateFinal)),]
+    dataPlot = dataPlot[seq(which(dataPlot$Date == dateInitial), which(dataPlot$Date == dateFinal)),, drop=F]
   }
   else if (as.character(dateInitial) %in% datesNames) {
-    dataPlot = dataPlot[seq(which(dataPlot$Date == dateInitial), nrow(dataPlot)),]
+    dataPlot = dataPlot[seq(which(dataPlot$Date == dateInitial), nrow(dataPlot)),, drop=F]
   }
   else if (as.character(dateFinal) %in% datesNames) {
-    dataPlot = dataPlot[seq(1, which(dataPlot$Date == dateFinal)),]
+    dataPlot = dataPlot[seq(1, which(dataPlot$Date == dateFinal)),, drop=F]
   }
   
   if (sameAxis) {
@@ -596,10 +596,22 @@ lmp <- function (modelobject) {
 # Function to make a longitudinal multilineplot with 1 variable
 .plotMultiLine <- function(data, ylab, dateInitial, dateFinal){
   
+  if (dateInitial %in% colnames(data) & dateFinal %in% colnames(data)) {
+    data = data[,seq(which(colnames(data) == dateInitial), which(colnames(data) == dateFinal)), drop=F]
+  }
+  else if (dateInitial %in% colnames(data)) {
+    data = data[,seq(which(colnames(data) == dateInitial), ncol(data)), drop=F]
+  }
+  else if (dateFinal %in% colnames(data)) {
+    data = data[,seq(1, which(colnames(data) == dateFinal)), drop=F]
+  }
+
   dataPlot <- data.frame(Region = rep(rownames(data), ncol(data)),
                          N = c(data), 
                          Date = as.Date(rep(colnames(data), each = nrow(data))))
   
+
+
   
   plot_ly(dataPlot, x = dataPlot$Date, y = dataPlot$N, type = "scatter", mode = "lines", 
           color = ~Region, colors = "Paired",
@@ -609,7 +621,8 @@ lmp <- function (modelobject) {
                                 '<br><b>%{yaxis.title.text}</b>: %{y}',
                                 '<extra></extra>')) %>%
     layout(xaxis = list(range = c(dateInitial, dateFinal)),
-           yaxis = list(title = ylab, showgrid = F,  fixedrange = T)) %>%
+           yaxis = list(title = ylab, showgrid = F,  fixedrange = T,
+                        range = c(0, max(dataPlot$N)))) %>%
     
     config(displaylogo = FALSE,
            modeBarButtonsToRemove = list(
@@ -636,6 +649,26 @@ lmp <- function (modelobject) {
 
 # Function to make a longitudinal multilineplot with 2 variables
 .plotMultiLine2Vars <- function(data1, data2, ylab1, ylab2, dateInitial, dateFinal, lag, sameaxis){
+  
+  if (dateInitial %in% colnames(data1) & dateFinal %in% colnames(data1)) {
+    data1 = data1[,seq(which(colnames(data1) == dateInitial), which(colnames(data1) == dateFinal)), drop=F]
+  }
+  else if (dateInitial %in% colnames(data1)) {
+    data1 = data1[,seq(which(colnames(data1) == dateInitial), ncol(data1)), drop=F]
+  }
+  else if (dateFinal %in% colnames(data1)) {
+    data1 = data1[,seq(1, which(colnames(data1) == dateFinal)), drop=F]
+  }
+  
+  if (dateInitial %in% colnames(data2) & dateFinal %in% colnames(data2)) {
+    data2 = data2[,seq(which(colnames(data2) == dateInitial), which(colnames(data2) == dateFinal)), drop=F]
+  }
+  else if (dateInitial %in% colnames(data2)) {
+    data2 = data2[,seq(which(colnames(data2) == dateInitial), ncol(data2)), drop=F]
+  }
+  else if (dateFinal %in% colnames(data2)) {
+    data2 = data2[,seq(1, which(colnames(data2) == dateFinal)), drop=F]
+  }
   
   data1Plot <- data.frame(Region = rep(rownames(data1), ncol(data1)),
                           N = c(data1), 
@@ -720,7 +753,8 @@ lmp <- function (modelobject) {
                                       '<br><b>%{yaxis.title.text}</b>: %{y}',
                                       '<extra></extra>')) %>%
       layout(xaxis = list(range = c(dateInitial, dateFinal)),
-             yaxis = list(title = ylab1, showgrid = F,  fixedrange = T),
+             yaxis = list(title = ylab1, showgrid = F,  fixedrange = T,
+                          range = c(0, max(c(data1Plot$N, data2Plot$Value)))),
              legend = list(x = 1.08, xanchor= 'left')
       ) %>%
       config(displaylogo = FALSE,
