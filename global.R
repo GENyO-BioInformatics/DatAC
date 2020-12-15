@@ -314,6 +314,15 @@ lmp <- function (modelobject) {
   
   dataPlot = data.frame(N = data, Date = datesNames)
   
+  if (dateInitial %in% datesNames & dateFinal %in% datesNames) {
+    dataPlot = dataPlot[seq(which(dataPlot$Date == dateInitial), which(dataPlot$Date == dateFinal)),]
+  }
+  else if (dateInitial %in% datesNames) {
+    dataPlot = dataPlot[seq(which(dataPlot$Date == dateInitial), nrow(dataPlot)),]
+  }
+  else if (dateFinal %in% datesNames) {
+    dataPlot = dataPlot[seq(1, which(dataPlot$Date == dateFinal)),]
+  }
   
   plot_ly(dataPlot, x = dataPlot$Date, y = dataPlot$N, type = "bar", 
           name = ylab, color = I("blue3"), text = lastRecord,
@@ -322,8 +331,9 @@ lmp <- function (modelobject) {
                                 '<br><b>Last record</b>: %{text}',
                                 '<extra></extra>')) %>%
     layout(title = main,
-           xaxis = list(title = "Date", range = c(dateInitial, dateFinal)),
-           yaxis = list(title = ylab, showgrid = F,  fixedrange = T)) %>%
+           xaxis = list(title = "Date"),
+           yaxis = list(title = ylab, showgrid = F, fixedrange = T,
+                        range = c(0, max(dataPlot$N)))) %>%
     config(displaylogo = FALSE,
            modeBarButtonsToRemove = list(
              'senddata1ToCloud',
@@ -354,6 +364,16 @@ lmp <- function (modelobject) {
   
   dataPlot = data.frame(N = data, Date = datesNames)
   
+  if (dateInitial %in% datesNames & dateFinal %in% datesNames) {
+    dataPlot = dataPlot[seq(which(dataPlot$Date == dateInitial), which(dataPlot$Date == dateFinal)),]
+  }
+  else if (dateInitial %in% datesNames) {
+    dataPlot = dataPlot[seq(which(dataPlot$Date == dateInitial), nrow(dataPlot)),]
+  }
+  else if (dateFinal %in% datesNames) {
+    dataPlot = dataPlot[seq(1, which(dataPlot$Date == dateFinal)),]
+  }
+  
   plot_ly(dataPlot, x = dataPlot$Date, y = dataPlot$N, name = ylab) %>%
     add_lines(x = dataPlot$Date, y = dataPlot$Value, name = ylab, text = lastRecord,
               line = list(color='rgb(204, 0, 0)', width = 3.5), showlegend = F,
@@ -362,8 +382,9 @@ lmp <- function (modelobject) {
                                     '<br><b>Last record</b>: %{text}',
                                     '<extra></extra>')) %>%
     layout(title = main,
-           xaxis = list(title = "Date", range = c(dateInitial, dateFinal)),
-           yaxis = list(title = ylab, showgrid = F,  fixedrange = T)) %>%
+           xaxis = list(title = "Date"),
+           yaxis = list(title = ylab, showgrid = F,  fixedrange = T,
+                        range = c(0, max(dataPlot$N)))) %>%
     config(displaylogo = FALSE,
            modeBarButtonsToRemove = list(
              'senddata1ToCloud',
@@ -397,6 +418,17 @@ lmp <- function (modelobject) {
   dataPlot = data.frame(N = dataMerged[datesNames,1], 
                         Value = dataMerged[datesNames,2], 
                         Date = as.Date(datesNames))
+
+
+  if (as.character(dateInitial) %in% datesNames & as.character(dateFinal) %in% datesNames) {
+    dataPlot = dataPlot[seq(which(dataPlot$Date == dateInitial), which(dataPlot$Date == dateFinal)),]
+  }
+  else if (as.character(dateInitial) %in% datesNames) {
+    dataPlot = dataPlot[seq(which(dataPlot$Date == dateInitial), nrow(dataPlot)),]
+  }
+  else if (as.character(dateFinal) %in% datesNames) {
+    dataPlot = dataPlot[seq(1, which(dataPlot$Date == dateFinal)),]
+  }
   
   if (sameAxis) {
     plot_ly(dataPlot, x = dataPlot$Date, y = dataPlot$N, type = "bar", 
@@ -413,7 +445,8 @@ lmp <- function (modelobject) {
                                       '<extra></extra>')) %>%
       layout(title = main,
              xaxis = list(title = "Date", range = c(dateInitial, dateFinal)),
-             yaxis = list(title = ylab1, showgrid = F,  fixedrange = T),
+             yaxis = list(title = ylab1, showgrid = F,  fixedrange = T,
+                          range = c(0, max(c(dataPlot$N, dataPlot$Value)))),
              margin = list(r=50)) %>%
       config(displaylogo = FALSE,
              modeBarButtonsToRemove = list(
