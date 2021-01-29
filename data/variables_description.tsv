@@ -1,26 +1,26 @@
 Name R	Variable	Description	Source
 CasesTotal	Cumulative cases (Total)	Cumulative positive cases (PCR + Antibody tests)	DatAC
-newCasesTotal	Daily cases (Total)	Daily positive cases (PCR + Antibody tests)	MISAN
+newCasesTotal	Daily cases (Total)	Daily positive cases (PCR + Antibody tests). Before May 10, 2020, the date of daily cases is the date of onset of symptoms or, failing that, the date of diagnosis minus 6 days. As of May 11, 2020, it is the date of onset of symptoms, or failing that, the date of diagnosis minus 3 days, or the date of diagnosis for asymptomatic cases	MISAN
 PCR	Cumulative cases (PCR+)	Cumulative PCR positive cases	DatAC
 newPCR	Daily cases (PCR+)	Daily PCR positive cases	MISAN
 Deaths	Cumulative deaths	Cumulative COVID-19 deaths	DatAC
-newDeaths	Daily deaths	Daily COVID-19 deaths	Datadista, Escovid19data, IECA
-Cured	Cumulative recovered	Cumulative recovered COVID-19 patiens	MISAN, Datadista, Escovid19data
-Hospitalized	Cumulative hospitalized	Cumulative hospitalized COVID-19 patiens	Datadista, Escovid19data, DatAC
-newHospitalized	Daily hospitalized	Daily hospitalized COVID-19 patiens	IECA, DatAC
-PunctualHospitalized	Punctual hospitalized	Number of COVID-19 patiens that are hospitalized in a day	Datatista, Escovid19data
-UCI	Cumulative ICU	Cumulative COVID-19 patiens transferred to ICU	Datadista, Escovid19data
-newUCI	Daily ICU	Daily COVID-19 patiens transferred to ICU	IECA, DatAC
-PunctualUCI	Punctual ICU	Number of COVID-19 patiens that are in ICU in a day	Datatista
-newDicharged	Daily discharged	Daily COVID-19 patients discharged	Datatista
-PercentagedBed	Hospitals occupancy	Percentage of occupied hospital beds	Datatista
-PercentagedBedUCI	ICU occupancy	Percentage of occupied ICU beds	Datatista
+newDeaths	Daily deaths	Daily COVID-19 deaths	Datadista, MISAN, IECA
+Hospitalized	Cumulative hospitalized	Cumulative hospitalized COVID-19 patiens	IECA, Datadista, MISAN, DatAC
+newHospitalized	Daily hospitalized	Daily hospitalized COVID-19 patiens	IECA, MISAN, DatAC
+PunctualHospitalized	Punctual hospitalized	Number of COVID-19 patiens that are hospitalized in a day	Datadista, Escovid19data
+UCI	Cumulative ICU	Cumulative COVID-19 patiens transferred to ICU	Datadista, DatAC
+newUCI	Daily ICU	Daily COVID-19 patiens transferred to ICU	IECA, MISAN, Datatista, DatAC
+PunctualUCI	Punctual ICU	Number of COVID-19 patiens that are in ICU in a day	Datadista
+newDicharged	Daily discharged	Daily COVID-19 patients discharged	Datadista
+PercentagedBed	Hospitals occupancy	Percentage of occupied hospital beds	Datadista
+PercentagedBedUCI	ICU occupancy	Percentage of occupied ICU beds	Datadista
 ENE_round1	Seroprevalence-1	Percentage of people with anti-SARS-COV-2 IGg antibodies in the first round (2020/04/27 - 2020/05/11) of Spanish seroprevalence study	MISAN
 ENE_round2	Seroprevalence-2	Percentage of people with anti-SARS-COV-2 IGg antibodies in the second round (2020/05/18 - 2020/06/01) of Spanish seroprevalence study	MISAN
 ENE_round3	Seroprevalence-3	Percentage of people with anti-SARS-COV-2 IGg antibodies in the third round (2020/06/08 - 2020/06/22) of Spanish seroprevalence study	MISAN
+CompletedVaccinated	Fully vaccinated people	Cumulative number of people who have been fully vaccinated (2 doses received)	Datadista
+DoseAdministrated	Vaccines administered	Cumulative number of doses of vaccines administered	Datadista
 RateCasesCum	Incidence rate	Cumulative cases rate per 100000 habitants. (Cases/Population) * 100000	DatAC
 RateDeathsCum	Deaths rate	Cumulative deaths rate per 100000 habitants. (Deaths/Population) * 100000	DatAC
-PercentageCured.CasesTotal	CRR	Case recovered rate. Percentage of recovered COVID-19 patiens by total cases. (Recovered/Cases)*100	DatAC
 PercentageDeaths.CasesTotal	CFR	Case fatality rate. Percentage of COVID-19 deaths by total cases. (Deaths/Cases) * 100	DatAC
 CI14	CI14	Cumulative Incidence rate per 100000 habitants in 14 days	DatAC
 CI7	CI7	Cumulative Incidence rate per 100000 habitants in 7 days	DatAC
@@ -36,4 +36,5 @@ SO2	SO2	SO2 (ug/m^3)	EEA, CAGPDS
 PM10	PM10	Particulate matter 10 micrometers or less in diameter (ug/m^3)	EEA, CAGPDS
 PM2.5	PM2.5	Particulate matter 2.5 micrometers or less in diameter (ug/m^3)	EEA, CAGPDS
 mobility	Mobility	Percentage of population that has left the area	INE
+Population	Population	Population of the region	INE, IECA
 Population	Population	Population of the region	INE, IECA
