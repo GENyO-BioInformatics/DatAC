@@ -18,6 +18,7 @@ ENE_round1	Seroprevalence-1	Percentage of people with anti-SARS-COV-2 IGg antibo
 ENE_round2	Seroprevalence-2	Percentage of people with anti-SARS-COV-2 IGg antibodies in the second round (2020/05/18 - 2020/06/01) of Spanish seroprevalence study	MISAN
 ENE_round3	Seroprevalence-3	Percentage of people with anti-SARS-COV-2 IGg antibodies in the third round (2020/06/08 - 2020/06/22) of Spanish seroprevalence study	MISAN
 CompletedVaccinated	Fully vaccinated people	Cumulative number of people who have been fully vaccinated (2 doses received)	Datadista
+PercentagedCompletedVaccinated	Fully vaccinated rate	Percentage of fully vaccinated people with respect to the total population of the area	DatAC
 DoseAdministrated	Vaccines administered	Cumulative number of doses of vaccines administered	Datadista
 RateCasesCum	Incidence rate	Cumulative cases rate per 100000 habitants. (Cases/Population) * 100000	DatAC
 RateDeathsCum	Deaths rate	Cumulative deaths rate per 100000 habitants. (Deaths/Population) * 100000	DatAC
