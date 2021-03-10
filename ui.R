@@ -362,6 +362,9 @@ Science of The Total Environment, 2020, 141424. ", a(href = "https://doi.org/10.
                            p("DatAC web-server was developed and is maintained at the Bioinformatics Unit - GENYO", style = "font-size:18px"),
                            p("Code is available at ", a(href = "https://github.com/GENyO-BioInformatics/DatAC", "GitHub"), style = "font-size:18px"),
                            p("Article is published at ", a(href = "https://doi.org/10.1016/j.scitotenv.2020.141424", "Science of the Total Environment"), "journal", style = "font-size:18px"),
+                           p("Supported by FEDER/Junta de Andalucía-Consejería de Transformación Económica, Industria, Conocimiento y Universidades", style = "font-size:18px"),
+                           tags$a(tags$img(src="logoConsejeria.png", height = "170px"),
+                                  href="https://www.juntadeandalucia.es/organismos/transformacioneconomicaindustriaconocimientoyuniversidades.html", target="_blank"),
                            p(paste("Last update:", max(c(lastUpdatesSpainCommunities,
                                                          lastUpdatesSpainProvinces), na.rm=T))),
                            p("DatAC is intended only for scientific research, so it should not be used for taking any
