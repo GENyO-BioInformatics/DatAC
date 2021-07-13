@@ -1019,7 +1019,7 @@ lmp <- function (modelobject) {
     
     else if (class(modelResults) != "try-error"){
       title = paste(rownames(data1), gsub(" <br />", "\n", main), sep = "\n")
-      return(list(c(title, xlab, ylab), modelResults))
+      return(list(c(title, xlab, ylab), modelResults, dataPlot))
     }
     
     else {

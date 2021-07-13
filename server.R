@@ -868,7 +868,10 @@ shinyServer(function(input, output, session) {
         req(input$modelSingleAnalysis == "GAM")
         validate(need(modelResults(), message = "Insufficient data to calculate this model. Please, select other model or data."))
         titles <- modelResults()[[1]]
-        plot(modelResults()[[2]], main = titles[1], xlab = titles[2], ylab = titles[3])
+        ggplot(modelResults()[[3]][,2:3], aes(x = N, y = Value)) +
+            geom_point() + 
+            geom_smooth(method = "gam", formula = y ~s(x)) +
+            labs(x = titles[2], y = titles[3])
     })
     
     
