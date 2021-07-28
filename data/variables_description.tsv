@@ -20,6 +20,7 @@ ENE_round3	Seroprevalence-3	Percentage of people with anti-SARS-COV-2 IGg antibo
 CompletedVaccinated	Fully vaccinated people	Cumulative number of people who have been fully vaccinated (2 doses received)	Datadista
 PercentagedCompletedVaccinated	Fully vaccinated rate	Percentage of fully vaccinated people with respect to the total population of the area	DatAC
 DoseAdministrated	Vaccines administered	Cumulative number of doses of vaccines administered	Datadista
+Rt	Rt	Effective reproduction number	DatAC
 RateCasesCum	Incidence rate	Cumulative cases rate per 100000 habitants. (Cases/Population) * 100000	DatAC
 RateDeathsCum	Deaths rate	Cumulative deaths rate per 100000 habitants. (Deaths/Population) * 100000	DatAC
 PercentageDeaths.CasesTotal	CFR	Case fatality rate. Percentage of COVID-19 deaths by total cases. (Deaths/Cases) * 100	DatAC

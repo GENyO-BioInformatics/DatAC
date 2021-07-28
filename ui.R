@@ -332,6 +332,7 @@ navbarPage("DatAC: Data Against COVID-19", id="nav", theme = shinytheme("lumen")
                           p("* There may be some differences in data from communities and provinces due to these are provided from different sources."),
                           h2("Versions"),
                           tags$ul(
+                            tags$li("1.7 (2021-07-28): Rt variable added."),
                             tags$li("1.6 (2021-01-29): Vaccinations data added."),
                             tags$li("1.5 (2020-11-18): Punctual ICU, Daily discharged, Hospitals occupancy and ICU occupancy variables added."),
                             tags$li("1.4 (2020-09-18): Seroprevalence and punctual hospitalizations data added."),
